@@ -17,32 +17,42 @@
 
 // Object Literals p1
 
-let firstName = 'Chandler';
-let lastName = 'Bings';
+// function createPerson(firstName, lastName, age) {
+//   let fullName = `${firstName} ${lastName}`;
+//   return {
+//     firstName,
+//     lastName,
+//     fullName,
+//     isSenior() {
+//       return age > 60;
+//     },
+//   };
+// }
 
-let person = {
-  firstName,
-  lastName,
-};
+// let p = createPerson('Ross', 'Geller', 62);
 
-function createPerson(firstName, lastName, age) {
-  let fullName = `${firstName} ${lastName}`;
-  return {
-    firstName,
-    lastName,
-    fullName,
-    isSenior() {
-      return age > 60;
-    },
-  };
-}
-
-let p = createPerson('Ross', 'Geller', 62);
-
-console.log(p);
-console.log(p.firstName);
-console.log(p.lastName);
-console.log(p.fullName);
-console.log(p.isSenior());
+// console.log(p);
+// console.log(p.firstName);
+// console.log(p.lastName);
+// console.log(p.fullName);
+// console.log(p.isSenior());
 // console.log(person.firstName);
 // console.log(person.lastName);
+
+// Object Literals p2
+// 1. Spaces in object properties
+
+const per = {
+  'first name': 'Chandler',
+};
+
+console.log(per['first name']);
+
+//2. Variables as properties name
+const ln = 'last name';
+const person = {
+  'first name': 'Chandler',
+  [ln]: 'Bing',
+};
+
+console.log(person);
