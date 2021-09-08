@@ -1,11 +1,21 @@
-// Destructuring - Objects
+// for of Loop
 
-//  using aliases
-let employee = {
-  fname: 'Chandler',
-  lname: 'Bing',
-  gender: 'Female',
-};
+// classic Loop
+let colors = ['Red', 'Blue', 'Green'];
 
-let { fname: f, lname: l, gender: g } = employee;
-console.log(f, l, g);
+for (let index in colors) {
+  console.log(colors[index]);
+}
+
+// for of Loop
+for (let color of colors) {
+  console.log(color);
+}
+
+// for of Loop * using a string to loop over
+
+let letters = 'ABC';
+
+for (let letter of letters) {
+  console.log(letter);
+}
