@@ -1,11 +1,11 @@
 // Destructuring - Objects
 
-//  1 to 1
+//  using aliases
 let employee = {
   fname: 'Chandler',
   lname: 'Bing',
   gender: 'Female',
 };
 
-let { fname, lname, gender } = employee;
-console.log(fname, lname, gender);
+let { fname: f, lname: l, gender: g } = employee;
+console.log(f, l, g);
