@@ -1,17 +1,17 @@
 "use strict";
-// for of Loop
-// classic Loop
-let colors = ['Red', 'Blue', 'Green'];
-for (let index in colors) {
-    console.log(colors[index]);
+// Class
+// let p1 = new Person();
+class Person {
 }
-// for of Loop
-for (let color of colors) {
-    console.log(color);
+let p = new Person();
+//classes are functions but ....Functions are hoisted, classes are not!!!
+function employee() { }
+employee();
+console.log(typeof Person);
+class Animal {
+    greet() { }
 }
-// using a string to loop over
-let letters = 'ABC';
-for (let letter of letters) {
-    console.log(letter);
-}
+let a = new Animal();
+console.log(Animal.prototype);
+console.log(a.greet === Animal.prototype.greet);
 //# sourceMappingURL=test.js.map

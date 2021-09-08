@@ -1,21 +1,24 @@
-// for of Loop
+// Class
 
-// classic Loop
-let colors = ['Red', 'Blue', 'Green'];
+// let p1 = new Person();
 
-for (let index in colors) {
-  console.log(colors[index]);
+class Person {}
+let p = new Person();
+
+//classes are functions but ....Functions are hoisted, classes are not!!!
+
+function employee() {}
+employee();
+
+console.log(typeof Person);
+
+class Animal {
+  greet() {}
 }
 
-// for of Loop
-for (let color of colors) {
-  console.log(color);
-}
+let a = new Animal();
 
-// for of Loop * using a string to loop over
+console.log(Animal.prototype);
+console.log(a.greet === Animal.prototype.greet);
 
-let letters = 'ABC';
-
-for (let letter of letters) {
-  console.log(letter);
-}
+//adding a method to a class is like adding a method to the prototype. => Classes are jus syntactic sugar over prototype inheritance
