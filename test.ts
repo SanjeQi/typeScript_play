@@ -1,21 +1,28 @@
+// Class Inheritance
+
 class Person {
-  //using a constructor method - object creation - only one constructor per class definition
   constructor(name) {
-    this.name = name;
-    console.log(this.name + ' Constructor');
+    console.log(name + 'Person Constructor');
   }
-  // using a static method ---called with Person.staticMethod(), so can be called with the class and not the object
-  static staticMethod() {
-    console.log('Static Method');
-  }
-  // using a prototype method - can be called with each object ex : p :  p.greet()
-  greet() {
-    console.log(`Hello ${this.name}`);
+  getID() {
+    return 10;
   }
 }
 
-let p = new Person('Chandler');
+class Employee extends Person {
+  constructor(name) {
+    super(name);
+    console.log(name + ' Employee Constructor');
+  }
+  getID() {
+    return super.getID();
+  }
+}
 
-Person.staticMethod();
+// let person = new Person();
+// console.log('person instance', person);
 
-p.greet();
+let employee = new Employee('Chandler ');
+console.log(employee.getID());
+
+// console.log('employee instance', employee);
