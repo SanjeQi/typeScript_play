@@ -1,28 +1,28 @@
 // Class Inheritance
 
-class Person {
-  constructor(name) {
-    console.log(name + 'Person Constructor');
+class Parent {
+  constructor(name, title) {
+    this.name = name;
+    this.title = title;
   }
-  getID() {
-    return 10;
-  }
-}
-
-class Employee extends Person {
-  constructor(name) {
-    super(name);
-    console.log(name + ' Employee Constructor');
-  }
-  getID() {
-    return super.getID();
+  someParentMethod() {
+    return 'This is a parent method.';
   }
 }
 
-// let person = new Person();
-// console.log('person instance', person);
+class Child extends Parent {
+  constructor(name: string, title: string, age: number) {
+    super(name, title);
+    this.age = age;
+  }
+  someChildMethod() {
+    return 'This is a child method';
+  }
+}
 
-let employee = new Employee('Chandler ');
-console.log(employee.getID());
+let obj = new Parent('Parent', 'this is the parent');
+console.log('obj: ', obj, 'obj.someParentMethod: ', obj.someParentMethod());
 
-// console.log('employee instance', employee);
+let objChild = new Child('Child', 'this is a child', 12);
+console.log(objChild);
+console.log(objChild.someChildMethod());

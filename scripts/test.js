@@ -1,25 +1,26 @@
 "use strict";
 // Class Inheritance
-class Person {
-    constructor(name) {
-        console.log(name + 'Person Constructor');
+class Parent {
+    constructor(name, title) {
+        this.name = name;
+        this.title = title;
     }
-    getID() {
-        return 10;
-    }
-}
-class Employee extends Person {
-    constructor(name) {
-        super(name);
-        console.log(name + ' Employee Constructor');
-    }
-    getID() {
-        return super.getID();
+    someParentMethod() {
+        return 'This is a parent method.';
     }
 }
-// let person = new Person();
-// console.log('person instance', person);
-let employee = new Employee('Chandler ');
-console.log(employee.getID());
-// console.log('employee instance', employee);
+class Child extends Parent {
+    constructor(name, title, age) {
+        super(name, title);
+        this.age = age;
+    }
+    someChildMethod() {
+        return 'This is a child method';
+    }
+}
+let obj = new Parent('Parent', 'this is the parent');
+console.log('obj: ', obj, 'obj.someParentMethod: ', obj.someParentMethod());
+let objChild = new Child('Child', 'this is a child', 12);
+console.log(objChild);
+console.log(objChild.someChildMethod());
 //# sourceMappingURL=test.js.map
