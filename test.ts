@@ -1,28 +1,31 @@
-// Class Inheritance
+// Sets & Maps
 
-class Parent {
-  constructor(name, title) {
-    this.name = name;
-    this.title = title;
-  }
-  someParentMethod() {
-    return 'This is a parent method.';
-  }
+//Sets
+let mySet = Object.create(null);
+let mySet1 = Object.create({ name: 'Lee' });
+
+mySet.id = 0;
+if (mySet.id) {
+  console.log('id exists ');
 }
 
-class Child extends Parent {
-  constructor(name: string, title: string, age: number) {
-    super(name, title);
-    this.age = age;
-  }
-  someChildMethod() {
-    return 'This is a child method';
-  }
-}
+//Maps
 
-let obj = new Parent('Parent', 'this is the parent');
-console.log('obj: ', obj, 'obj.someParentMethod: ', obj.someParentMethod());
+let myMap = Object.create(null);
+myMap.name = 'Chandler';
 
-let objChild = new Child('Child', 'this is a child', 12);
-console.log(objChild);
-console.log(objChild.someChildMethod());
+let val = myMap.name;
+console.log(val, myMap);
+// Number 100 and the string 100 refers to the same property --- is a problem if I want to use the number and a string as keys. The number is automatically coerced into string
+myMap[100] = 'Hello';
+console.log('100');
+//Objects
+let ob1 = {};
+let ob2 = {};
+
+myMap[ob1] = 'World';
+
+console.log(myMap[ob1]); //output: World;
+console.log(myMap[ob2]); //output: World;  ????
+console.log(ob1.toString()); // output: [object Object]
+console.log(ob2.toString()); // output: [object Object]
