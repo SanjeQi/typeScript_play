@@ -1,31 +1,29 @@
-// Sets & Maps
+//Sets - Object - can only contain unique values
+let mySet = new Set();
 
-//Sets
-let mySet = Object.create(null);
-let mySet1 = Object.create({ name: 'Lee' });
-
-mySet.id = 0;
-if (mySet.id) {
-  console.log('id exists ');
-}
-
-//Maps
-
-let myMap = Object.create(null);
-myMap.name = 'Chandler';
-
-let val = myMap.name;
-console.log(val, myMap);
-// Number 100 and the string 100 refers to the same property --- is a problem if I want to use the number and a string as keys. The number is automatically coerced into string
-myMap[100] = 'Hello';
-console.log('100');
-//Objects
 let ob1 = {};
 let ob2 = {};
 
-myMap[ob1] = 'World';
+mySet.add('Hello');
+mySet.add(1);
+mySet.add(1); // not added to the set - not unique
 
-console.log(myMap[ob1]); //output: World;
-console.log(myMap[ob2]); //output: World;  ????
-console.log(ob1.toString()); // output: [object Object]
-console.log(ob2.toString()); // output: [object Object]
+//Passing an object to the set
+mySet.add(ob1);
+mySet.add(ob2); //both objects are not converted to stings so that is why they are unique and are added to the set
+
+console.log(mySet, mySet.size);
+
+//Passing an Array to the set
+let newSet = new Set([1, 2, 3, 4, 4, 4]);
+console.log(newSet); // output: Set(4) {1, 2, 3, 4} -- only the unique values added
+//Chaining
+let chainSet = new Set().add('Hello').add('world');
+console.log(chainSet);
+//To check the existence of a value in a Set use .has() :ex: randomSetObject.has()
+console.log(newSet.has(5));
+//To delete a value from a set
+console.log(newSet.delete(4));
+console.log(newSet);
+console.log(newSet.delete(3));
+console.log(newSet);
