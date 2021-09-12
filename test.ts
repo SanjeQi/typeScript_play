@@ -1,24 +1,28 @@
-//Sets - Weak Sets
-//Similar to strong Sets but, they can only store object references and not primitive values
+// Map is:
+//an ordered list of key value pairs. In map the key and the value can be of any type
 
-//The only advantage of a weak set over a strong set is the fact that memory is handel properly with weak sets
+let myMap = new Map();
 
-let mySet = new Set();
-let key = {};
-mySet.add(key);
-console.log('mySet', mySet);
-console.log(mySet.size);
-key = null;
-console.log(mySet.size);
-key = [...mySet][0];
-console.log(key);
+myMap.set('fname', 'Chandler'); // key:fname  value: Chandler
+myMap.set('age', 30);
 
-//Create a week Set
+// Retrieving a value from a map : myMap.get()
+console.log(myMap.get('age'));
 
-let set = new WeakSet();
-let key = {};
-set.add(key);
-console.log(set.has(key));
-key = null;
+let ob1 = {};
+let ob2 = {};
 
-//
+myMap.set(ob1, 10);
+myMap.set(ob2, 20);
+
+console.log(myMap.get(ob1));
+//Size of the map same at sets:  myMap.size
+console.log(myMap.size);
+//Check existence of a key: myMap.has(key)
+console.log(myMap.has('age'));
+//Remove a key value pair from a map: myMap.delete(key)
+myMap.delete(ob1);
+//Empty the map - remove all key/value pairs: myMap.clear()
+myMap.clear();
+
+console.log(myMap);
