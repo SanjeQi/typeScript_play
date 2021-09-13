@@ -1,28 +1,23 @@
-// Map is:
-//an ordered list of key value pairs. In map the key and the value can be of any type
+// Maps - iterating over maps
 
-let myMap = new Map();
+let myMap = new Map([
+  ['fname', 'Chandler'],
+  ['lname', 'Bing'],
+]);
 
-myMap.set('fname', 'Chandler'); // key:fname  value: Chandler
-myMap.set('age', 30);
-
-// Retrieving a value from a map : myMap.get()
-console.log(myMap.get('age'));
-
-let ob1 = {};
-let ob2 = {};
-
-myMap.set(ob1, 10);
-myMap.set(ob2, 20);
-
-console.log(myMap.get(ob1));
-//Size of the map same at sets:  myMap.size
-console.log(myMap.size);
-//Check existence of a key: myMap.has(key)
-console.log(myMap.has('age'));
-//Remove a key value pair from a map: myMap.delete(key)
-myMap.delete(ob1);
-//Empty the map - remove all key/value pairs: myMap.clear()
-myMap.clear();
-
-console.log(myMap);
+// Getting the keys - fname, lname
+for (let key of myMap.keys()) {
+  console.log(key);
+}
+// Getting the values - Chandler , Bing
+for (let value of myMap.values()) {
+  console.log(value);
+}
+//Getting the keys and the values
+for (let entry of myMap.entries()) {
+  console.log('entries in myMap', entry);
+}
+//Getting the keys and values using destructuring
+for (let [key, value] of myMap.entries()) {
+  console.log(key, value);
+}
