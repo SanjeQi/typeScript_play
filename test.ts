@@ -1,29 +1,10 @@
-//forEach with Maps and Sets
+// Weak Maps - don't really know a practical use for them
+// the keys can only be objects -- objects references are weak,meaning that they don't interfere with the garbage collection
 
-//forEach with arrays
-const numbers = [2, 4, 6, 8];
-numbers.forEach(arrayFunction);
-//arrayFunction definition
-function arrayFunction(element, index, array) {
-  console.log('arr[' + index + ']=' + element);
-}
+let myMap = new WeakMap();
+let ob1 = {};
+myMap.set(ob1, 'WeakMap Play');
+console.log('myMap: ', myMap, 'ob1 form myMap:', myMap.get(ob1));
 
-//forEach with Maps
-let myMap = new Map([
-  ['fname', 'Chandler'],
-  ['lname', 'Bing'],
-]);
-myMap.forEach(mapFunction);
-//mapFunction definition
-function mapFunction(value, key, callingMap) {
-  console.log('key:', key, 'value:', value);
-  console.log(myMap === callingMap);
-}
-//forEach with Sets
-let mySet = new Set([1, 2, 3]);
-mySet.forEach(setFunction);
-//setFunction definition
-function setFunction(value, key, callingSet) {
-  console.log('key:', key, 'value:', value);
-  console.log(mySet === callingSet);
-}
+ob1 = null; // don't really know how to verify this >>>?????ß
+console.log(myMap);
