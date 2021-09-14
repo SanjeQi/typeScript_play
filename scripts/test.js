@@ -1,13 +1,30 @@
 "use strict";
-//Symbol iterator
-// "for of" loop -- needs the objet to have an iterator method
-// for loop ---> iterator method ---> Symbol.iterator
-let str = 'Hello';
-let arr = [1, 2, 3];
-let num = 5;
-let obj = { name: 'Chandler' };
-console.log('for string:', typeof str[Symbol.iterator]);
-console.log('for arrays:', typeof arr[Symbol.iterator]);
-console.log('for numbers:', typeof num[Symbol.iterator]);
-console.log('for objects:', typeof obj[Symbol.iterator]);
+//Iterable and Iterators
+// Iterable {
+//     [symbol.Iterator](): Iterator
+// }
+// Iterator{
+//     next():IteratorResultObject
+// }
+// IteratorResultObject{
+//     value:any
+//     done:bool
+// }
+let iterable = [1, 2, 3];
+//Creating the Iterator
+function createIterator(array) {
+    let count = 0;
+    return {
+        next: function () {
+            return count < array.length
+                ? { value: array[count++], done: false }
+                : { value: undefined, done: true };
+        },
+    };
+}
+let myIterator = createIterator(iterable);
+console.log(myIterator.next());
+console.log(myIterator.next());
+console.log(myIterator.next());
+console.log(myIterator.next());
 //# sourceMappingURL=test.js.map

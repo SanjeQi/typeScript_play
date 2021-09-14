@@ -1,16 +1,33 @@
-//Symbol iterator
+//Iterable and Iterators
 
-// "for of" loop -- needs the objet to have an iterator method
-// for loop ---> iterator method ---> Symbol.iterator
+// Iterable {
+//     [symbol.Iterator](): Iterator
+// }
 
-let str = 'Hello';
-let arr = [1, 2, 3];
-let num = 5;
-let obj = { name: 'Chandler' };
+// Iterator{
+//     next():IteratorResultObject
+// }
 
-//Q: What am i doing here?
-//A: Checking to see if a method exist for the object at this particular key(ex: str[Symbol.iterator]), and if typeof key exists meaning is returning a function this mean that the object itself can be use with for of
-console.log('for string:', typeof str[Symbol.iterator]); //function - for of loop
-console.log('for arrays:', typeof arr[Symbol.iterator]); //function - for of loop
-console.log('for numbers:', typeof num[Symbol.iterator]); //undefined - no for of loop
-console.log('for objects:', typeof obj[Symbol.iterator]); //undefined - no for of loop
+// IteratorResultObject{
+//     value:any
+//     done:bool
+// }
+
+let iterable = [1, 2, 3];
+//Creating the Iterator
+function createIterator(array) {
+  let count = 0;
+  return {
+    next: function () {
+      return count < array.length
+        ? { value: array[count++], done: false }
+        : { value: undefined, done: true };
+    },
+  };
+}
+
+let myIterator = createIterator(iterable);
+console.log(myIterator.next());
+console.log(myIterator.next());
+console.log(myIterator.next());
+console.log(myIterator.next());
