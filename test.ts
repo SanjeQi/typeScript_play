@@ -1,33 +1,30 @@
-//Iterable and Iterators
+//Generator
+//-is a special function capable of pausing and resuming execution
+//-use to simplify the code when I write custom iterator
 
-// Iterable {
-//     [symbol.Iterator](): Iterator
-// }
-
-// Iterator{
-//     next():IteratorResultObject
-// }
-
-// IteratorResultObject{
-//     value:any
-//     done:bool
-// }
-
-let iterable = [1, 2, 3];
-//Creating the Iterator
-function createIterator(array) {
-  let count = 0;
-  return {
-    next: function () {
-      return count < array.length
-        ? { value: array[count++], done: false }
-        : { value: undefined, done: true };
-    },
-  };
+function* createGenerator() {
+  yield 1;
+  console.log('After 1 yield');
+  yield 2;
 }
 
-let myIterator = createIterator(iterable);
-console.log(myIterator.next());
-console.log(myIterator.next());
-console.log(myIterator.next());
-console.log(myIterator.next());
+let myGen = createGenerator();
+console.log(myGen.next());
+console.log(myGen.next());
+console.log(myGen.next());
+
+//Creating a custom iterator
+
+let person = {
+  fname: 'Chandler',
+  lname: 'Bing',
+};
+person[Symbol.iterator] = function* () {
+  let properties = Object.keys(person);
+  for (let t of properties) {
+    yield this[t];
+  }
+  for (let p of person) {
+    console.log(p);
+  }
+};
