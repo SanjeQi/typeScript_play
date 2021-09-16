@@ -1,28 +1,13 @@
 "use strict";
-//Generator
-//-is a special function capable of pausing and resuming execution
-//-use to simplify the code when I write custom iterator
-function* createGenerator() {
-    yield 1;
-    console.log('After 1 yield');
-    yield 2;
-}
-let myGen = createGenerator();
-console.log(myGen.next());
-console.log(myGen.next());
-console.log(myGen.next());
-//Creating a custom iterator
-let person = {
-    fname: 'Chandler',
-    lname: 'Bing',
-};
-person[Symbol.iterator] = function* () {
-    let properties = Object.keys(person);
-    for (let t of properties) {
-        yield this[t];
-    }
-    for (let p of person) {
-        console.log(p);
-    }
-};
+//TypeScript
+//Declarations and Annotations
+let x = 10;
+let y = 'hi';
+let z = true;
+// this is done by default:
+let a = 100;
+//a = true; //<-- errors out boolean is not assignable to type number
+let b = a + 2; // ok
+b = a + 'hi';
+console.log(b);
 //# sourceMappingURL=test.js.map
