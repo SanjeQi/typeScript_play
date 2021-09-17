@@ -9,7 +9,7 @@ function addNumbers() {
     var sum = a + b;
     console.log('Inside if block', sum);
   }
-  console.log('Outside if block', sum);
+  // console.log('Outside if block', sum);
 }
 addNumbers();
 
@@ -34,6 +34,7 @@ addTwoNumbers();
 
 //var declarations are hoisted and initialized with undefined
 //const and let are hoisted but are NOT initialized with undefined
+//Variable declarations summary
 
 //// Var Hoisting play
 function hoist1() {
@@ -70,4 +71,35 @@ function hoist5() {
   console.log('let before the declaration - hoist5', name); // cannot access name before initialization
   let name;
 }
-hoist5();
+// hoist5();
+
+//--------------------------------------- Play examples
+//ex1--------------
+function exercise() {
+  var name1 = 'A';
+  var name1 = 'B'; //allowed to redeclare variable using var
+  console.log(name1);
+}
+exercise();
+//ex2--------------
+function exercise2() {
+  let name2 = 'D';
+  // let name2 = 'E';  errors out Identifier name2 has already been declared
+  console.log(name2);
+}
+exercise2();
+//ex3--------------
+var ax = 10;
+function exercise3() {
+  ax = 20;
+  console.log(ax);
+}
+exercise3();
+console.log(ax);
+//ex4--------------
+const profile = {
+  name: 'Cosmo Kramer',
+  tv: 'Seinfeld',
+};
+profile.name = 'George Constanza';
+console.log(profile.name); // 'George Constanza'--> changing a property on an object is not reassigning. I can mutate the properties of an object declared with const.
