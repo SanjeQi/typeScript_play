@@ -1,46 +1,61 @@
 "use strict";
-//TypeScript
-//Enumeration - enum type - used to create a custom type where we can specify a list of values that a variable can hold
-//in other words - a user friendly value for a particular numeric value
-var EyeColor;
-(function (EyeColor) {
-    EyeColor[EyeColor["Brown"] = 1] = "Brown";
-    EyeColor[EyeColor["Black"] = 2] = "Black";
-    EyeColor[EyeColor["Blue"] = 3] = "Blue";
-    EyeColor[EyeColor["Green"] = 4] = "Green";
-})(EyeColor || (EyeColor = {}));
-let myEyeColor = EyeColor.Black; //"black" is the name for the value 2 in this case
-console.log(myEyeColor); // output: 2
-console.log(EyeColor[myEyeColor]); //output:Black
-//Arrays
-let strArr1 = ['Chandler', 'Bing']; //method1
-let strArr2 = ['Chandler', 'Bing']; //method2
-let anyArr = ['Chandler', 100]; //method3
-//Tuple
-//*are special Arrays that let us specify the type of values, the array can contain
-let myTuples = ['Chandler', 100];
-console.log(myTuples);
-myTuples.push('Bing', 200);
-console.log(myTuples);
-//Class Constructor -- v2 is equivalent to v1
-//v1
-class Person {
-    constructor(fname, lname) {
-        this.fname = fname;
-        this.lname = lname;
+//Var, let, const
+//var: function scoped  let,const: block scoped
+function addNumbers() {
+    var a = 10;
+    var b = 20;
+    var flag = true;
+    if (flag) {
+        var sum = a + b;
+        console.log('Inside if block', sum);
     }
+    console.log('Outside if block', sum);
 }
-//v2
-class Person1 {
-    constructor(fname, lname) {
-        this.fname = fname;
-        this.lname = lname;
+addNumbers();
+//let and const
+function addTwoNumbers() {
+    const a = 100;
+    const b = 200;
+    const flag = true;
+    if (flag) {
+        const sum = a + b;
+        console.log('Inside if block', sum);
     }
+    // console.log('Outside if block', sum);
 }
-let parsnip1 = {
-    fname: 'Chandler',
-    lname: 'Bing',
-    age: 30,
-};
-console.log(parsnip1);
+addTwoNumbers();
+//------------------------------------------------
+//Hoisting
+//!means variable declarations are put into memory during the compile phase
+//!!means moving variable declarations to the top of their scope
+//!!!only variable declarations are hoisted to the top of the scope and not variable initialization
+//var declarations are hoisted and initialized with undefined
+//const and let are hoisted but are NOT initialized with undefined
+//// Var Hoisting play
+function hoist1() {
+    var name;
+    console.log('var after declaration-hoist1', name);
+}
+hoist1(); //undefined
+function hoist2() {
+    console.log('var before declaration-hoist2', name);
+    var name;
+}
+hoist2(); //undefined
+function hoist3() {
+    console.log('var before declaration and initialization- hoist3', name);
+    var name = 'Cosmo Kramer';
+}
+hoist3(); // undefined -- only variable declarations are hoisted to the top of the scope and not variable initialization
+//let and const Hoisting play
+function hoist4() {
+    let name;
+    console.log('let after the declaration - hoist4', name);
+}
+hoist4();
+function hoist5() {
+    console.log('let before the declaration - hoist5', name);
+    let name;
+}
+hoist5();
 //# sourceMappingURL=test.js.map

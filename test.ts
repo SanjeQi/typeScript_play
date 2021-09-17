@@ -1,61 +1,73 @@
-//TypeScript
+//Var, let, const
 
-//Enumeration - enum type - used to create a custom type where we can specify a list of values that a variable can hold
-//in other words - a user friendly value for a particular numeric value
-enum EyeColor {
-  Brown = 1,
-  Black,
-  Blue,
-  Green,
-}
-
-let myEyeColor = EyeColor.Black; //"black" is the name for the value 2 in this case
-console.log(myEyeColor); // output: 2
-console.log(EyeColor[myEyeColor]); //output:Black
-//Arrays
-let strArr1: string[] = ['Chandler', 'Bing']; //method1
-let strArr2: Array<string> = ['Chandler', 'Bing']; //method2
-let anyArr: any[] = ['Chandler', 100]; //method3
-
-//Tuple
-//*are special Arrays that let us specify the type of values, the array can contain
-
-let myTuples: [string, number] = ['Chandler', 100];
-console.log(myTuples);
-myTuples.push('Bing', 200);
-console.log(myTuples);
-
-//Class Constructor -- v2 is equivalent to v1
-//v1
-class Person {
-  public fname: string;
-  public lname: string;
-  constructor(fname: string, lname: string) {
-    this.fname = fname;
-    this.lname = lname;
+//var: function scoped  let,const: block scoped
+function addNumbers() {
+  var a = 10;
+  var b = 20;
+  var flag = true;
+  if (flag) {
+    var sum = a + b;
+    console.log('Inside if block', sum);
   }
+  console.log('Outside if block', sum);
 }
-//v2
-class Person1 {
-  constructor(public fname: string, public lname: string) {}
+addNumbers();
+
+//let and const
+function addTwoNumbers() {
+  const a = 100;
+  const b = 200;
+  const flag = true;
+  if (flag) {
+    const sum = a + b;
+    console.log('Inside if block', sum);
+  }
+  // console.log('Outside if block', sum);
+}
+addTwoNumbers();
+//------------------------------------------------
+
+//Hoisting
+//!means variable declarations are put into memory during the compile phase
+//!!means moving variable declarations to the top of their scope
+//!!!only variable declarations are hoisted to the top of the scope and not variable initialization
+
+//var declarations are hoisted and initialized with undefined
+//const and let are hoisted but are NOT initialized with undefined
+
+//// Var Hoisting play
+function hoist1() {
+  var name;
+  console.log('var after declaration-hoist1', name);
+}
+hoist1(); //undefined
+
+function hoist2() {
+  console.log('var before declaration-hoist2', name);
+  var name;
+}
+hoist2(); //undefined
+
+function hoist3() {
+  console.log('var before declaration and initialization- hoist3', name);
+  var name = 'Cosmo Kramer';
 }
 
-//Interfaces - the most flexible way of describing types in TypeScript
+hoist3(); // undefined -- only variable declarations are hoisted to the top of the scope and not variable initialization
 
-interface Parsnip {
-  fname: string;
-  lname: string;
-  age?: number; //age?: will make the property optional
+//let and const Hoisting play
+//!const and let are hoisted but are NOT initialized with undefined
+//!!let and const are only evaluated during run time** you can't access the variable declare with let and const before the javascript engine evaluates its value at the place where it was declared
+//!!!let and const behave the same way in respect with scope and hoisting
+//!!!! the only difference between let and const is: all const declarations must be initialized, and once initialized, you cannot re-assign a new value
+function hoist4() {
+  let name;
+  console.log('let after the declaration - hoist4', name);
 }
+hoist4();
 
-let parsnip1: Parsnip = {
-  fname: 'Chandler',
-  lname: 'Bing',
-  age: 30,
-};
-
-console.log(parsnip1);
-let parsnip2: Parsnip = {
-  fname: 'Cosmo',
-  lname: 'Kramer',
-};
+function hoist5() {
+  console.log('let before the declaration - hoist5', name); // cannot access name before initialization
+  let name;
+}
+hoist5();
