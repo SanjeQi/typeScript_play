@@ -1,31 +1,90 @@
-//Scope
+//Closure - a combination of the function and its scope(lexical environment) bundled together
+//a Closure is created when a function is returned from another function
+//An inner function has access to variables in the outer function scope even after the outer function has finished execution
+//Closure allows the returned function to have an associated persistent memory which can hold on to live data between executions
 
-//Determining variable value
-const a = 10;
-function exampleOne() {
-  const a = 20;
-  console.log(a);
-}
-exampleOne();
-console.log(a);
-// what is log to the console L6:20 L10:10
-
-//When it comes to line 6, the engine first checks if variable is present in the function scope.It is and the value is 20
-//When it comes to line 10 the js engine checks if variable a is present in the global scope. It is and the value is 10
-
-const x = 100;
-function exampleTwo() {
-  const y = 200;
+//Invoking the inner function now
+function outer() {
+  let counter = 0;
   function inner() {
-    const z = 300;
-    console.log(x, y, z);
+    counter++;
+    console.log(counter);
   }
   inner();
 }
-exampleTwo();
-//R: 100,200,300
-//Lexical Scoping
-//! Describes how a parser resolves variable names when functions are nested
-//!! 'Lexical' refers to the fact that lexical scoping uses the location where a variable is declared within the code to determine where that variable is available
-//!!! When we have nested functions, the JS engine for variable lookup starts with the inner function where we are trying to access the variable and moves outwards until it reaches the global scope.
-//!!!Nested functions have access to variables declared in their own scope as well as variables declared in the outer scope
+outer(); //o:1
+outer(); //o:1 when the function is invoked again, it doesn't remember the data ,that was stored in the memory from the previous run
+
+//Invoking the inner function later
+function outerA() {
+  let counter = 0;
+  function innerA() {
+    counter++;
+    console.log(counter);
+  }
+  return innerA; //JS returns the innerA function + its lexical environment(counter variable) // innerA Fn + counter = closure // The function will remember the value of the counter variable
+}
+const fn1 = outerA();
+fn1(); //o:1
+fn1(); //o:2
+
+// Memoization
+//"Memoization is an optimization technique used to speed up computer programs by storing the result of expensive functions calls and returning the cached result when the same inputs occur again"
+
+//Problem
+// need a function that calculates the square of a number for the first time and if the square was already calculated it will return it from cash
+
+//Solution
+function memoizedSquare() {
+  let cache = {};
+  return function optimizeSquare(num) {
+    if (cache[num]) {
+      console.log(
+        `Square for ${num} is present in the cache and the value is:}`
+      );
+      return cache[num];
+    } else {
+      const square = num * num;
+      cache[num] = square;
+      console.log(
+        `Square for ${num} is *NOT* present in the cache. Calculating ... :}`
+      );
+      return square;
+    }
+  };
+}
+
+const memoSquare = memoizedSquare();
+console.log(memoSquare(2));
+console.log(memoSquare(5));
+console.log(memoSquare(5));
+console.log(memoSquare(2));
+console.log(memoSquare(10));
+console.log(memoSquare(10));
+
+// Similar problem but more generic
+
+function memoize(callback) {
+  let cache = {};
+  return function (...args) {
+    const key = args.toString();
+    if (key in cache) {
+      console.log('Returning from cache');
+      return cache[key];
+    } else {
+      console.log('Computing result');
+      const result = callback(...args);
+      cache[key] = result;
+      return result;
+    }
+  };
+}
+
+function add(a, b) {
+  return a + b;
+}
+const memoAdd = memoize(add);
+console.log(memoAdd(2, 4));
+console.log(memoAdd(2, 4));
+console.log(memoAdd(1, 9));
+console.log(memoAdd(1, 9));
