@@ -1,85 +1,53 @@
 "use strict";
-//Closure - a combination of the function and its scope(lexical environment) bundled together
-//a Closure is created when a function is returned from another function
-//An inner function has access to variables in the outer function scope even after the outer function has finished execution
-//Closure allows the returned function to have an associated persistent memory which can hold on to live data between executions
-//Invoking the inner function now
-function outer() {
-    let counter = 0;
-    function inner() {
-        counter++;
-        console.log(counter);
-    }
-    inner();
+//Function Currying
+//What is Function Currying?
+//!!currying is a process in functional programing in which we transform a function with multiple arguments into a sequence of nesting functions that take one argument at a time **** f(a,b,c) into f(a)(b)(c)
+//!!!currying doesn't call a function.It simply transform it
+//Currying is possible because of closures ***  When we return a function from another function ,we are returning the function along with its lexical scope *** Lexical scope takes the outer function parameters into consideration ***
+function sum(a, b, c) {
+    return a + b + c;
 }
-outer(); //o:1
-outer(); //o:1 when the function is invoked again, it doesn't remember the data ,that was stored in the memory from the previous run
-//Invoking the inner function later
-function outerA() {
-    let counter = 0;
-    function innerA() {
-        counter++;
-        console.log(counter);
-    }
-    return innerA; //JS returns the innerA function + its lexical environment(counter variable) // innerA Fn + counter = closure // The function will remember the value of the counter variable
-}
-const fn1 = outerA();
-fn1(); //o:1
-fn1(); //o:2
-// Memoization
-//"Memoization is an optimization technique used to speed up computer programs by storing the result of expensive functions calls and returning the cached result when the same inputs occur again"
-//Problem
-// need a function that calculates the square of a number for the first time and if the square was already calculated it will return it from cash
-//Solution
-function memoizedSquare() {
-    let cache = {};
-    return function optimizeSquare(num) {
-        if (cache[num]) {
-            console.log(`Square for ${num} is present in the cache and the value is:}`);
-            return cache[num];
-        }
-        else {
-            const square = num * num;
-            cache[num] = square;
-            console.log(`Square for ${num} is *NOT* present in the cache. Calculating ... :}`);
-            return square;
-        }
+// console.log(sum(1, 2, 4));
+//Transform sum(a,b,c) to sum(a)(b)(c)
+// function curry (fn){
+//     //return curried version of the function
+// }
+function curry(fn) {
+    return function (a) {
+        return function (b) {
+            return function (c) {
+                return fn(a, b, c);
+            };
+        };
     };
 }
-const memoSquare = memoizedSquare();
-console.log(memoSquare(2));
-console.log(memoSquare(5));
-console.log(memoSquare(5));
-console.log(memoSquare(2));
-console.log(memoSquare(10));
-console.log(memoSquare(10));
-// Similar problem but more generic
-function memoize(callback) {
-    let cache = {};
-    return function (...args) {
-        const key = args.toString();
-        if (key in cache) {
-            console.log('Returning from cache');
-            return cache[key];
-        }
-        else {
-            console.log('Computing result');
-            const result = callback(...args);
-            cache[key] = result;
-            return result;
-        }
-    };
+const curriedSum = curry(sum);
+console.log(curriedSum(2)(3)(5));
+//Practical Example - A logging function
+function log(date, importance, message) {
+    console.log(`[${date.getHours()}:${date.getMinutes()}] [#${importance}] ${message}`);
 }
-function add(a, b) {
-    return a + b;
-}
-const memoAdd = memoize(add);
-console.log(memoAdd(2, 4));
-console.log(memoAdd(2, 4));
-console.log(memoAdd(2, 4));
-console.log(memoAdd(2, 4));
-function sum(a, b, ...c) {
-    console.log(a, b, c);
-}
-sum(1, 2, 3);
+log(new Date(), 'Error', 'name cannot be null');
+const curriedLog = curry(log);
+curriedLog(new Date())('Error')('name cannot be null');
+const logNow = curriedLog(new Date());
+logNow('Error')('name cannot be null');
+logNow('Info')('user logged out');
+const logErrorNow = logNow('Error');
+logErrorNow('name cannot be null');
+logErrorNow('Reference error');
+// Ex
+const multiply = (x, y) => x * y;
+const curriedMultiply = (x) => (y) => x * y;
+console.log(multiply(2, 3));
+console.log(curriedMultiply(2));
+console.log(curriedMultiply(2)(3));
+//Partially applied functions are common use of currying
+const timesTen = curriedMultiply(10);
+console.log(timesTen(3));
+console.log(timesTen(8));
+//Another example
+const updateElementText = (id) => (content) => (document.querySelector(`#${id}`).textContent = content);
+const updateHeaderText = updateElementText('header');
+updateHeaderText('Cosmo Kramer');
 //# sourceMappingURL=test.js.map
