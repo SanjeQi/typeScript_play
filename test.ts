@@ -1,31 +1,29 @@
-// Arrow function
+//Generic Function Currying - solution 1
 
-const person1 = {
-  name1: 'Cosmo Kramer',
-  hobbies1: ['chess, climbing'],
-  printBio1() {
-    const printHobbies1 = function () {
-      return `${this.hobbies1[0]} and ${this.hobbies1[1]}`;
-    };
-    console.log(`My name is ${this.name1}`);
-    // console.log(`I like ${printHobbies1()}`);
-  },
-};
+//Implement a generic curry function
+//Write a function that takes any function and returns a curried version of the function
 
-person1.printBio1();
-// from line:10 : My name Cosmo Kramer
-// from line: 11 : Error out hobbies1 undefined
+function sum(a, b) {
+  return a + b;
+}
 
-const person2 = {
-  name2: 'George Constanta',
-  hobbies2: ['sport', 'architecture'],
-  printBio2() {
-    const printHobbies2 = () => {
-      return `${this.hobbies2[0]} and ${this.hobbies2[1]}`;
-    };
-    console.log(`My name is ${this.name2}`);
-    console.log(`I like ${printHobbies2()}`); //
-  },
-};
+// let curriedSum = genericCurry(sum);
+// curriedSum(2)(3);
+// curriedSum(2, 3);
 
-person2.printBio2();
+// //Solution 1
+function genericCurryOne(f) {
+  return function currify(...args) {
+    if (args.length >= f.length) {
+      return f.apply(this, args);
+    } else {
+      return function (...newArgs) {
+        return currify.apply(this, args.concat(newArgs));
+      };
+    }
+  };
+}
+
+let curriedSum = genericCurryOne(sum);
+console.log(curriedSum(2)(3));
+console.log(curriedSum(2, 9));
