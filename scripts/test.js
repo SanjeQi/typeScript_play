@@ -1,35 +1,29 @@
 "use strict";
-// // Arrow function
-// --------------------- Classical function definitions ----Problem ---
+// Arrow function
 const person1 = {
-    firstName: 'Cosmo',
-    lastName: 'Kramer',
-    sayMyName1() {
-        const fullName = function () {
-            return `${this.firstName} ${this.lastName}`;
+    name1: 'Cosmo Kramer',
+    hobbies1: ['chess, climbing'],
+    printBio1() {
+        const printHobbies1 = function () {
+            return `${this.hobbies1[0]} and ${this.hobbies1[1]}`;
         };
-        console.log(`My full name is ${fullName()}`);
+        console.log(`My name is ${this.name1}`);
+        // console.log(`I like ${printHobbies1()}`);
     },
 };
-person1.sayMyName1(); // firstName and lastName undefined
-// // Problem is that implicit binding is on the sayMyName function
-// // Within sayMyName, 'this' points to the person object
-// // on line 10 fullName has no implicit , explicit , 'new' binding
-// // it defaults to global binding
-// // within the fullName() function, 'this' points to the window object
-// // in the global scope, we don't have any variable called firstName and lastName --- that is why it errors out
-// ---------------------Lexical binding - with arrow functions
-// solution: transforming the fullName function into an arrow function
+person1.printBio1();
+// from line:10 : My name Cosmo Kramer
+// from line: 11 : Error out hobbies1 undefined
 const person2 = {
-    firstName: 'Cosmo',
-    lastName: 'Kramer',
-    sayMyName2() {
-        const fullName = () => `${this.firstName} ${this.lastName}`;
-        console.log(`My full name is ${fullName()}`);
+    name2: 'George Constanta',
+    hobbies2: ['sport', 'architecture'],
+    printBio2() {
+        const printHobbies2 = () => {
+            return `${this.hobbies2[0]} and ${this.hobbies2[1]}`;
+        };
+        console.log(`My name is ${this.name2}`);
+        console.log(`I like ${printHobbies2()}`); //
     },
 };
-person2.sayMyName2(); // My full name is Cosmo Kramer
-//! Unlike normal functions, an arrow function does not define a 'this' keyword at all
-//!'this' keyword in an arrow function behaves like any other variable
-//! it is going to lexically resolve to an enclosing scope that does define 'this' keyword
+person2.printBio2();
 //# sourceMappingURL=test.js.map
