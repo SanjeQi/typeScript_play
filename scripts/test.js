@@ -1,13 +1,50 @@
 "use strict";
-//Prototype More
-//!Prototype object is present on every function function.prototype
-//!! On each function prototype object, there is a property called constructor which points back to the function itself
+//Prototypal Inheritance
+/*
+ Create a Programmer inheriting Person
+
+1.Add properties pertaining to the Programmer
+2.Add methods pertaining to the Programmer
+3.Inherit properties from Person
+4.Inherit methods from Person
+
+1.Add properties pertaining to the Programmer
+    function Programmer (){
+      this.language = language,
+    }
+
+2.Add methods pertaining to the Programmer
+    Programmer.prototype.code = function (){
+      console.log(`I'm coding in ${this.language}`);
+      
+    }
+3.Inherit properties from Person
+3.1 Programmer function will be invoked with the 'new' keyword
+    like this: const kramer = new Programmer('kramer','JavaScript')
+3.2 This object is created and return automatically
+
+    function Programer(name,language) {
+      // this = Object.create(Programer.prototype)
+      this.language = language
+      //return this
+    }
+
+3.3 Explicit bind 'this' in Programmer to Person() call
+    function Programmer (name, language){
+      //this = Object.create(Programer.prototype)
+      Person.call(this,name)
+      this.language = language
+      // return this
+    }
+4.Inherit methods from Person Link Programmer to Person.prototype Using Object.create()
+    function Programmer(name, language){
+      Person.call(this,name)
+      this.language=language
+    }
+Programer.prototype = Object.create(Person.prototype) */
 function Person(name) {
     this.name = name;
 }
-const arrow = () => {
-    return `From the arrow`;
-};
 Person.prototype.sayMyname = function () {
     console.log(`My name is ${this.name}`);
 };
@@ -19,13 +56,20 @@ Person.prototype.sleep = function () {
 };
 const batman = new Person('Bruce Wayne');
 const superman = new Person('Clark Kent');
-console.log('batman: ', batman, 'superman: ', superman);
-console.log(Person.prototype);
-console.log(arrow.prototype); //undefined arrows functions don't have a prototype object
-// ----------------- Object.getPrototypeOf() ---------------
-// Once an object has been created it is possible to get hold of the prototype of that object using Object.getPrototypeOf()
-console.log('Prototype of batman', Object.getPrototypeOf(batman), '/ constructor of batman:', batman.constructor);
-// ----------------- Instanceof Operator ---------------
-// it is possible to know if an object is an instance of a constructor function by using instanceof operator
-console.log(batman instanceof Person); // true
+// console.log('Batman Object: ', batman, 'Superman Object: ', superman);
+function Programmer(name, language) {
+    Person.call(this, name);
+    this.language = language;
+}
+Programmer.prototype = Object.create(Person.prototype);
+Programmer.prototype.code = function () {
+    console.log(`I'm coding in ${this.language}`);
+};
+const kramer = new Programmer('Superman', 'JavaScript');
+kramer.sayMyname();
+console.log(kramer.constructor); // Person --- it need to be Programmer
+Programmer.prototype.constructor = Programmer;
+console.log(kramer.constructor); // Programmer
+kramer instanceof Programmer; // true
+console.log('Kramer the coder ', kramer);
 //# sourceMappingURL=test.js.map
