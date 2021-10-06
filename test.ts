@@ -1,72 +1,49 @@
-//Class keyword
-
-// Classes in JS are just syntactical sugar over prototypal inheritance
-/*
-function Person1(name) {
-  this.name = name;
-}
-
-Person1.prototype.sayMyName = function () {
-  console.log(`My name is ${this.name}`);
-};
-Person1.prototype.eat = function (food) {
-  console.log(`I'm eating ${food}`);
-};
-Person1.prototype.sleep = function () {
-  console.log('Sleeping...');
-};
-
-const batman1 = new Person1('Bruce Wayne');
-const superman1 = new Person1('Clark Kent');
-
-console.log('Batman Object: ', batman1, 'Superman Object: ', superman1); */
-
-// Using class - Person class
-
-class Person {
-  constructor(name) {
-    this.name = name;
-  }
-  sayMyName() {
-    console.log(`My name is ${this.name}`);
-  }
-  eat(food) {
-    console.log(`I'm eating ${food}`);
-  }
-  sleep() {
-    console.log('Sleeping');
-  }
-}
-
-const batman = new Person('Bruce Wayne');
-const superman = new Person('Clark Kent');
-
-console.log('Batman Object: ', batman, 'Superman Object: ', superman);
+// Exercise Problem - Chaining methods on a class
 
 /**
- * Programer constructor Function
+ * 1.Create a class called Calculator
+ * 2.Calculator should always have a property 'value' that always starts at 0
+ * 3.Calculator should contain three methods: add,subtract,print
+ * 4.'add' and 'subtract' accept a number or arguments and perform the corresponding  operation, on the current value stored in the 'value' property
+ * 5.print will log the 'value' to the console
+ * 6.Create another class call ScientificCalculator with extends Calculator Class
+ * 7.ScientificCalculator should contain one method called square which will square the value.
+ * 8.Create an instance of the ScientificCalculator and perform some operations
+ * 9.The operations should be chainable 
+ * Ex:
+  const s = new ScientificCalculator()
+  s.add(10).sub(5).square().print() -> log 25 to the console 
  * 
-  function Programer(name, language) {
-    Person.call(this, name);
-    this.language = language;
-  }
-
-Programer.prototype = Object.create(Person.prototype);
-Programer.prototype.code = function () {
-  console.log(`I'm coding in ${this.language}`);
-};
-Programer.prototype.constructor = Programer;
-
  */
 
-// Programer Class
-
-class Programer extends Person {
-  constructor(name, language) {
-    super(name); // this is calling the Person class constructor
-    this.language = language;
+class Calculator {
+  constructor() {
+    this.value = 0;
   }
-  code() {
-    console.log(`I'm coding in ${this.language}`);
+  add(num) {
+    this.value += num;
+    return this;
+  }
+  sub(num) {
+    this.value -= num;
+    return this;
+  }
+  print() {
+    console.log(this.value);
   }
 }
+
+class ScientificCalculator extends Calculator {
+  square() {
+    this.value *= this.value;
+    return this;
+  }
+}
+
+const s = new ScientificCalculator();
+s.add(12).sub(1).square().print();
+
+// const c = new Calculator(100);
+// console.log(calcu.sub(5).sub(3));
+
+//Obs by returning this I can chain methods present in a Class (returning the same instance of ScientificCalculator on which I can call the methods again )
