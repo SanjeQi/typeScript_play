@@ -1,49 +1,91 @@
-// Exercise Problem - Chaining methods on a class
+// Map
+/*
+-----The map object in JS holds key-value pairs(similar to an regular object)----
+ map keys can be any value
+ map Size 
+ map does not contain any keys by default
+ map  can directly be iterated
 
-/**
- * 1.Create a class called Calculator
- * 2.Calculator should always have a property 'value' that always starts at 0
- * 3.Calculator should contain three methods: add,subtract,print
- * 4.'add' and 'subtract' accept a number or arguments and perform the corresponding  operation, on the current value stored in the 'value' property
- * 5.print will log the 'value' to the console
- * 6.Create another class call ScientificCalculator with extends Calculator Class
- * 7.ScientificCalculator should contain one method called square which will square the value.
- * 8.Create an instance of the ScientificCalculator and perform some operations
- * 9.The operations should be chainable 
- * Ex:
-  const s = new ScientificCalculator()
-  s.add(10).sub(5).square().print() -> log 25 to the console 
- * 
- */
+* Creating a map: */
+const mapEx = new Map();
+/* Adding key,value pairs to a map using set methods by passing key and value as arguments:  */
+mapEx.set('firstName', 'Bruce');
+mapEx.set('lastName', 'Wayne');
+/* To check the number of key value pairs in the map, use 'size' property: */
+mapEx.size; // -> Returns 2
+/* To get the value at a particular key, use 'get' method by passing in key as argument: */
+mapEx.get('firstName'); // -> Returns 'Bruce'
+mapEx.get('lastName'); //  -> Returns 'Wayne'
+/* To check is a key exists in a map, use 'has' method  */
+mapEx.has('firstName'); // -> Returns true
+mapEx.has('fullName'); // -> Returns false
+/* To remove a key value pair from a map, use the delete method passing in the key. */
+mapEx.delete('firstName'); // -> Returns true
+mapEx.delete('fullName'); //  -> Returns false
+/* To delete all the key value pairs in a map use 'clear' method: */
+mapEx.clear();
+mapEx.size; // -> Returns 0
 
-class Calculator {
-  constructor() {
-    this.value = 0;
-  }
-  add(num) {
-    this.value += num;
-    return this;
-  }
-  sub(num) {
-    this.value -= num;
-    return this;
-  }
-  print() {
-    console.log(this.value);
-  }
+mapEx.set('firstName', 'Bruce');
+mapEx.set('lastName', 'Wayne');
+
+/* To iterate over key-value pair:    */
+for (let [key, value] of mapEx) {
+  console.log(`${key} = ${value}`);
 }
-
-class ScientificCalculator extends Calculator {
-  square() {
-    this.value *= this.value;
-    return this;
-  }
+/* To iterate over keys only:    */
+for (let key of mapEx.keys()) {
+  console.log(key);
 }
+/* To iterate over values only:    */
+for (let value of mapEx.values()) {
+  console.log(value);
+}
+/* ----------------------- Map and Array conversion -------------  */
+/* 2D Array to MAP */
+const personArr = [
+  ['firstName', 'Clarke'],
+  ['lastName', 'Kent'],
+];
+const personMap = new Map(personArr);
+console.log('personArr', personArr, 'personMap', personMap);
 
-const s = new ScientificCalculator();
-s.add(12).sub(1).square().print();
+/* Map to Array */
+const map = new Map();
+map.set('firstName', 'Cosmo');
+map.set('lastName', 'Kramer');
 
-// const c = new Calculator(100);
-// console.log(calcu.sub(5).sub(3));
+const arr = Array.from(map);
+console.log('the array from map:', map);
 
-//Obs by returning this I can chain methods present in a Class (returning the same instance of ScientificCalculator on which I can call the methods again )
+/* ----------------------- Map vs Object -------------  */
+/* ---1.keys type --- 
+A map keys can be any value (including functions,objects, or any primitive) 
+The keys of an Object however must be either a string,number or a symbol
+*/
+const keyString = 'a string';
+const keyObj = {};
+const keyFunc = function () {};
+
+map.set(keyString, 'String key value');
+map.set(keyObj, 'Object key value');
+map.set(keyFunc, 'Function key value');
+
+console.log(map);
+/* ---2.Accidental keys --- 
+A map does not contain any keys by default;
+An Object has a prototype, so it contains default keys
+To create an object without a prototype:
+*/
+Object.create(null);
+
+/* ---3. Size --- 
+The number of items in a Map is easily retrieved form 'size' property
+The number of items in an Object must be determined manually
+*/
+
+/* ---4. Iteration behavior --- 
+Map is an iterable so it can directly be iterated
+Iterating over an Object however requires obtaining the keys 
+in some way and then iterating over them
+*/
