@@ -1,35 +1,52 @@
-// Set
+// Iterables & Iterators
 
+// --- Implementing iterable protocol  ---
 /*
-The Set Object in JavaScript ley you store unique values of any type
+ *  Iterable Protocol - the object should implement a method at the key [Symbol.iterator] and the method accepts no argument and returns an iterator
  */
-// --- Methods on the set object ---
-const set = new Set();
-//1.Append Values .add()
-set.add(1);
-set.add(2);
-set.add(3);
-set.add(3); // Does not get added
-//2.Size set.size
-set.size;
-//3.Existence of a value '.has(value)'
-set.has(2);
-//4.Remove a specific value and empty the set
-set.delete(3); // removes 3 from the set
-set.clear(); // empty the set
+//1.Crate an empty object
+let obj = {};
+//2.  Implement iterable protocol
+//2.1 Implement a method at the key [Symbol.iterator]
+obj = {
+  [Symbol.iterator]: function () {},
+};
+//2.2 The method at 2.1 should not accept any argument and should return an object which conforms to the iterator protocol
+obj = {
+  [Symbol.iterator]: function () {
+    const iterator = {};
+    return iterator;
+  },
+};
 
-// --- Iterating over a set object ---
-set.add(1);
-set.add(2);
-set.add(3);
-set.add(4);
-for (let value of set) {
-  console.log(value);
+// --- Implementing iterator protocol  ---
+/**
+ * ------ Iterator
+ * is an object that has a method at the key 'next'
+ * this method should return an object which contains two properties.'value' and 'done'
+ */
+
+obj = {
+  [Symbol.iterator]: function () {
+    let step = 0;
+    const iterator = {
+      next: function () {
+        step++;
+        if (step === 1) {
+          return { value: 'Hello', done: false };
+        } else if (step === 2) {
+          return { value: 'World', done: false };
+        } else return { value: undefined, done: true };
+      },
+    };
+    return iterator;
+  },
+};
+
+// What is happening now whe I run the for of loop on the obj
+for (const word of obj) {
+  console.log(word);
 }
-
-// --- Set and Array Conversion
-// * Array to Set
-const numArr = [1, 2, 3, 4, 5, 5, 3, 2];
-const numSet = new Set(numArr); //Set(5) {1,2,3,4,5}
-// * Set to Array
-const arrFromSet = [...numSet];
+//1.Invoke the method at the key [Symbol.iterator]
+//2.Returns an iterator object
+//3.The iterator object is then called multiple times unit it sees an object returned where done is set to false
