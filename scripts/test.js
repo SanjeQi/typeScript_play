@@ -1,98 +1,58 @@
 "use strict";
-// Iterables & Iterators
-// --- Make an object iterable  ---
-// use a for of loop to print numbers from 0 to 5o
+/**
+ *********** Generators ****************
+ * Generators were introduced in ES6 and allow you to define an iterative behaviour by writing a single function whose   execution is not continuous
+ * Generator function are written using the 'function*' syntax
+ * When called the generator function don't initially execute the code. Instead, the return a special type of iterator,called the 'Generator Object'
+ * When a value is consumed by calling the generator's next() method, the Generator function executes until it encounters the 'yield' keyword
+ * A Generator function can be called multiple times, and it returns a new Generator Object each time
+ * Each Generator Object may only be iterated once
+ */
 /*
+*********  Normal Function *********
 
-const range1 = {};
-for (let num of range) {
-  console.log(num);
+* Can not be stopped: Run to completion model
+* 'Hello''World'
+* Exit by returning or trowing an error
+* If you call the function again it will begin execution from the top / beginning
+ */
+function* normalFunction1() {
+    console.log('Hello');
+    console.log('World');
 }
+/* *********  Generator Function *********
 
-*/
-//1. For an object to be an iterable, it must implement a method at the key [Symbol.Iterators]
-const range11 = {
-    [Symbol.iterator]: function () { },
-};
-//2. [Symbol.iterator]() should not take any arguments and it should conform to the iterator protocol
-const range111 = {
-    [Symbol.iterator]: function () {
-        const iterator = {};
-        return iterator;
-    },
-};
-//3. An iterator is an object that has a method at the key next. That method should return an object which contains two properties: value and done
-const range1111 = {
-    [Symbol.iterator]: function () {
-        const iterator = {
-            next: function () {
-                //  return  {value: ... , done: ...}
-            },
-        };
-        return iterator;
-    },
-};
-//Solution
-const range = {
-    [Symbol.iterator]: function () {
-        let counter = 1;
-        const iterator = {
-            next: function () {
-                counter++;
-                if (counter <= 50) {
-                    return { value: counter, done: false };
-                }
-                return { value: undefined, done: true };
-            },
-        };
-        return iterator;
-    },
-};
-for (let num of range) {
-    console.log(num);
+* A generator is a function that can stop midway and then continue from where it stopped
+* A generator function can pause the execution
+* To achieve that behaviour, we use the 'yield' keyword
+* 'yield' is an operator with which a generator can pause itself
+* Every time a  generator encounters the 'yield' operator it 'yields' the value specified after it
+ */
+function* generatorFunction2() {
+    yield 'Hello';
+    yield 'World';
 }
-console.log([...range]);
-/*
-Extending solution to:
-Pass three values: start, end, interval.Print the range starting from start value till the end value with interval size increments
-ex: start 10, end=20 interval = 2 => 10,12,14,16,18,20
-*/
-const customRange = {
-    [Symbol.iterator]: function (start = 0, end = 50, range = 1) {
-        let counter = start;
-        const iterator = {
-            next: function () {
-                const result = { value: counter, done: false };
-                if (counter <= end) {
-                    counter += range;
-                    return result;
-                }
-                return { value: undefined, done: true }; // or {done: true}
-            },
-        };
-        return iterator;
-    },
-};
-// log 0 2 3 4 ... 50
-for (let num of customRange) {
-    console.log(num);
+/**
+ * 1. A generator can use the return keyword. However, 'return' set the {done:true} after which the gen cannot generate any more values :
+ */
+function* generatorFunction3() {
+    yield 'First';
+    return 'End'; // -> Generator ends here.
+    yield 'Last'; // -> Will never be executed
 }
-//Logs [0,2,3,4, ...50]
-console.log([...customRange]);
-// Ex1
-const iterator = customRange[Symbol.iterator](10, 20, 2);
-console.log(iterator.next()); // {value: 10, done: false}
-console.log(iterator.next()); // {value: 12, done: false}
-console.log(iterator.next()); // {value: 14, done: false}
-console.log(iterator.next()); // {value: 16, done: false}
-console.log(iterator.next()); // {value: 18, done: false}
-console.log(iterator.next()); // {value: 20, done: false}
-console.log(iterator.next()); // {value: undefined, done: true}
-//Ex2
-const iterator1 = customRange[Symbol.iterator](10, 20, 2);
-let result = iterator1.next();
-while (!result.done) {
-    console.log(result.value);
-    result = iterator1.next();
+/**
+ * 2. If I return a value, rather then yield the value, the returned value will not be iterated over in a 'for of' loop or a spread operator
+ */
+function* generatorFunction4() {
+    yield '1';
+    yield '2';
+    return '3';
 }
+const generatorObject4 = generatorFunction4();
+// for (const num of generatorObject4) {
+//   console.log(num); // => 1, 2
+// }
+console.log(generatorObject4.next());
+console.log(generatorObject4.next());
+console.log(generatorObject4.next());
 //# sourceMappingURL=test.js.map
