@@ -88,3 +88,15 @@ function* generatorFunction5() {
   yield 'Hello';
   yield 'World';
 }
+
+// Example:
+
+function* range() {
+  for (let i = 0; i <= 50; i = i + 5) {
+    yield i;
+  }
+}
+
+for (let num of range()) {
+  console.log(num);
+}

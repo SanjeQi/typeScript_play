@@ -52,7 +52,39 @@ const generatorObject4 = generatorFunction4();
 // for (const num of generatorObject4) {
 //   console.log(num); // => 1, 2
 // }
-console.log(generatorObject4.next());
-console.log(generatorObject4.next());
-console.log(generatorObject4.next());
+console.log(generatorObject4.next()); // => {value: '1', done: false}
+console.log(generatorObject4.next()); // => {value: '2', done: false}
+console.log(generatorObject4.next()); // => {value: '3', done: true}
+// Creating iterable and iterator manually  vs using a Generator function to create iterable and iterator
+const obj = {
+    [Symbol.iterator]: () => {
+        let step = 0;
+        const iterator = {
+            next: () => {
+                step++;
+                if (step === 1) {
+                    return { value: 'Hello', done: false };
+                }
+                else if (step === 2) {
+                    return { value: 'World', done: false };
+                }
+                return { done: true };
+            },
+        };
+        return iterator;
+    },
+};
+// VS
+function* generatorFunction5() {
+    yield 'Hello';
+    yield 'World';
+}
+function* range() {
+    for (let i = 0; i <= 50; i = i + 5) {
+        yield i;
+    }
+}
+for (let num of range()) {
+    console.log(num);
+}
 //# sourceMappingURL=test.js.map
