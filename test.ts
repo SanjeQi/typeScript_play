@@ -1,37 +1,63 @@
-/**
- * ********* Callbacks *******
- *
- * Callbacks are functions passed as arguments to other functions
- * They can be synchronous if they execute immediately or they can be asynchronous where they get executed after some time has passed,some event has occured or some data has been fetched
- * As more and more request had to be made based on the data obtained from the previous requests,developer started to encounter what is known as the callbacks hell
- * Callback hell makes the code difficult to reason about
- * An alternative and the recommend approach now is to use Promises
- */
+/** Promise
+ *What?
+    * A promise is simply an object
+    
+    A promise is always in one of the three states:
+          * pending:  which is the initial state of a promise, neither fulfilled or rejected
+          * fulfilled: the operation completed successfully 
+          * rejected: the operation failed 
+ *Why?
+    * Promises can help deal with the asynchronous code in a far more simpler way compared to callbacks
+    * Callback hell can be avoided with promises
+ *JS
+    1.Promise
+    2.Promise Value
+    3.Fulfill promise
+    4.Reject promise
+    5.Success callback
+    6.Failure calLback
+ * */
+// a.How to create a promise?
+const promise1 = new Promise();
+// b.How to fulfill or reject a promise
+const promise2 = new Promise((resolve, reject) => {}); // resolve and reject are functions :
 
-// Synchronous Callbacks - invoked immediately
+const promise3 = new Promise((resolve, reject) => {
+  //change the status from 'pending' to 'fulfilled'
+  resolve();
+});
 
-function greet(name) {
-  console.log(`Hello my name is ${name}`);
-}
-function higherOrderFunction(callback) {
-  const name = 'Bruce Wayne';
-  callback(name);
-}
+const promise4 = new Promise((resolve, reject) => {
+  //change status from 'pending' to 'rejected'
+  reject();
+});
 
-////A Higher Order Function is a function that accepts a callback as an argument or it returns another function
-higherOrderFunction(greet);
+// c.HOw to execute a callback function based on whether the Promise is fulfill or rejected
 
-let numbers = [1, 2, 3, 4, 5, 6, 7, 8];
-const sort = numbers.sort((a, b) => a - b);
-const map = numbers.map((n) => n * 2);
-const filter = numbers.filter((n) => n % 2 === 0);
-console.log(sort, map, filter);
+// *******  Resolve scenario ----------------------------------------------------
+const promise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    //Change status from 'pending' to 'fulfill'
+    resolve();
+  }, 5000);
+});
 
-//Asynchronous Callbacks used to delay the execution of a function until a particular time or event has occurred(data fetching)
+//*********  Reject scenario
+const promise = new Promise((resolve, reject) => {
+  //Change status from 'pending' to 'rejected'
+  reject();
+}, 5000);
 
-setTimeout(greet, 2000, 'Clark Kent');
+promise.then(onFulfillment);
+promise.catch(onRejection);
 
-function callback() {
-  document.getElementById('demo').innerHTML = 'Change of text holder';
-}
-Document.getElementById('demo').addEventListener('click', callback); // it waits for click to run the callback()
+//********************* Success and Failure callbacks ----------------------------
+const onFulfillment = (result) => {
+  // some code to process the result
+  console.log(result);
+};
+
+const onRejection = (error) => {
+  // code for error handling
+  console.log(error);
+};
