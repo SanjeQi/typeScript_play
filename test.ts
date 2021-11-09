@@ -1,125 +1,115 @@
-// /** Promise
-//  *What?
-//     * A promise is simply an object
-
-//     A promise is always in one of the three states:
-//           * pending:  which is the initial state of a promise, neither fulfilled or rejected
-//           * fulfilled: the operation completed successfully
-//           * rejected: the operation failed
-//  *Why?
-//     * Promises can help deal with the asynchronous code in a far more simpler way compared to callbacks
-//     * Callback hell can be avoided with promises
-//  *JS
-//     1.Promise
-//     2.Promise Value
-//     3.Fulfill promise
-//     4.Reject promise
-//     5.Success callback
-//     6.Failure calLback
-//  * */
-// // a.How to create a promise?
-// const promise1 = new Promise();
-// // b.How to fulfill or reject a promise
-// const promise2 = new Promise((resolve, reject) => {}); // resolve and reject are functions :
-
-// const promise3 = new Promise((resolve, reject) => {
-//   //change the status from 'pending' to 'fulfilled'
-//   resolve();
-// });
-
-// const promise4 = new Promise((resolve, reject) => {
-//   //change status from 'pending' to 'rejected'
-//   reject();
-// });
-
-// // c.HOw to execute a callback function based on whether the Promise is fulfill or rejected
-
-// // *******  Resolve scenario ----------------------------------------------------
-// const promise = new Promise((resolve, reject) => {
-//   setTimeout(() => {
-//     //Change status from 'pending' to 'fulfill'
-//     resolve();
-//   }, 5000);
-// });
-
-// //*********  Reject scenario
-// const promise = new Promise((resolve, reject) => {
-//   //Change status from 'pending' to 'rejected'
-//   reject();
-// }, 5000);
-
-// promise.then(onFulfillment);
-// promise.catch(onRejection);
-
-// //********************* Success and Failure callbacks ----------------------------
-// const onFulfillment = (result) => {
-//   // some code to process the result
-//   console.log(result);
-// };
-
-// const onRejection = (error) => {
-//   // code for error handling
-//   console.log(error);
-// };
-// //******************** Chaining Promises  ---------------------------- */
-
-// promise.then(onFulfillment).catch(onRejection);
-
-// Both then() and catch() return promises, and they can be chained
-
-// ******************** Promise - Static methods ************************ ------------------
-
-// *********** Promise.all() -------------------------------------------------------------------------
-// Query multiple API's and perform some action but only after all the API's have finished loading
-
-const promise1 = Promise.resolve(3);
-const promise2 = 42;
-const promise3 = new Promise((resolve, reject) => {
-  setTimeout(resolve, 100, 'foo');
-});
-
-Promise.all([promise1, promise2, promise3]).then((values) => {
-  console.log(values);
-});
-//=> [3, 42, 'foo']
 /**
- * Promise.all() method takes an iterable of promises as an input and returns a single Promise that resolves to an array of the results of the input Promises.
-  
- * Returned Promise will resolve when all the input promises have been resolved, or if the input iterable contains no Promises
-
-* It rejects immediately if any of the input promises reject or the non-promises throw an error, and will reject with the first rejection/error
+ * async
+ *
+ * The async keyword is used to declare sync functions
+ * Async functions are functions that are instances of the AsyncFunction constructor
+ * Unlike normal functions, async functions always return a promise
  */
 
-// *********** Promise.allSettled() -------------------------------------------------------------------------
+//Regular function
+function greetRegular() {
+  return 'Hello from regular function';
+}
+greetRegular(); // => 'Hello from regular function'
 
-Promise.allSettled([promise1, promise2, promise3]).then((values) => {
-  console.log(values);
-});
-/*  =>
-(3) [{…}, {…}, {…}]
-0: {status: 'fulfilled', value: 3}
-1: {status: 'fulfilled', value: 42}
-2: {status: 'fulfilled', value: 'foo'}
-length: 3
-[[Prototype]]: Array(0)
-*/
+//Async function
 
-//Promise.allSettled() waits for all input promises to complete regardless of whether or not one of them is rejected
+async function greetAsync() {
+  return 'Hello form async function';
+}
+greetAsync(); // => Promise {<fulfilled>: 'Hello form async function'}
 
-// *********** Promise.race() -------------------------------------------------------------------------
-// Returns promise that fulfills or rejects as soon as one of the input promises fulfills or rejects, with the value or reason from that promise
+//or the same result
 
-const promise4 = new Promise((resolve, reject) => {
-  setTimeout(resolve, 500, 'four');
-});
-
-const promise5 = new Promise((resolve, reject) => {
-  setTimeout(resolve, 100, 'five');
-});
-
-Promise.race([promise4, promise5]).then((value) => {
+async function greetAsync1() {
+  return Promise.resolve('Hello from async function 1 ');
+}
+greetAsync1().then((value) => {
   console.log(value);
 });
-// => five
 
-//both resolve but promise 2 is faster
+/*
+ * await
+ *
+ * await keyword can be put in front of any async promise based function to pause the code until that promise settles 
+ and return its result.
+ * await only works with async functions. Cannot use await in regular functions
+ */
+
+async function greetOneSec() {
+  let promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve('Hello');
+    }, 1000);
+  });
+
+  let result = await promise; // wait until the promise resolves
+  console.log(result);
+}
+
+greetOneSec();
+
+// Sequential vs Concurrent vs Parallel Execution
+
+function resolveHello() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve('Hello from resolveHello Function');
+    }, 2000);
+  });
+}
+
+function resolveWorld() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve('World');
+    }, 1000);
+  });
+}
+
+// Sequential Execution Concurrent -----------------------------------
+async function sequentialStart() {
+  const hello = await resolveHello();
+  console.log(hello, 'sequential'); // Logs after 2 seconds
+
+  const world = await resolveWorld();
+  console.log(world, 'sequential'); // Logs after 2 + 1 seconds
+}
+sequentialStart(); // => 'Hello' 'World' // total time: 3 seconds
+
+// Concurrent Execution ---------------------------------------------
+
+async function concurrentStart() {
+  const hello = resolveHello();
+  const world = resolveWorld();
+  console.log(await hello, 'concurrent'); // Logs after 2 sec
+  console.log(await world, 'concurrent'); // Logs after 2 sec
+}
+concurrentStart(); // => 'Hello' 'World' // total time: 2 seconds
+
+//  Parallel Execution --------------------------------------------- running whatever code resolves first
+
+function parallel() {
+  Promise.all([
+    async () => {
+      console.log(await resolveHello()); // Logs after 2 sec
+    },
+    async () => {
+      console.log(await resolveWorld()); // Logs after 1 sec
+    },
+  ]);
+}
+parallel(); // => 'World' 'Hello' //total time: 2 seconds  ----< reversed
+
+async function parallel1() {
+  await Promise.all([
+    async () => {
+      console.log(await resolveHello()); // Logs after 2 sec
+    },
+    async () => {
+      console.log(await resolveWorld()); // Logs after 1 sec
+    },
+  ]);
+  console.log('Finally'); // Logs after World Hello
+}
+parallel1();
