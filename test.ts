@@ -113,3 +113,20 @@ async function parallel1() {
   console.log('Finally'); // Logs after World Hello
 }
 parallel1();
+
+// Define a function called sleep which accepts a duration parameter
+// The sleep function should suspend the execution of the function  it is invoked in
+
+function sleep(duration) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, duration);
+  });
+}
+
+async function main() {
+  console.log('Logs immediately');
+  await sleep(8000);
+  console.log('Logs after 8 seconds');
+}
+
+main();
