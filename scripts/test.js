@@ -48,4 +48,108 @@ function factorial(num) {
     return num * factorial(num - 1);
 }
 console.log(factorial(5));
+/*
+ ------------------------------ Fibonacci Sequence -----------------------------------------
+Give a number n, find the first n elements of the fibonacci series.
+
+Now what is fibonacci series?  each number ( Fibonacci number ) is the sum of the two preceding numbers.
+
+The first two numbers in the series are 0 and 1.
+
+Test Case
+
+function printFibonacci(n) {}
+
+printFibonacci(2) - Returns 0 1
+printFibonacci(7) - Returns 0 1 1 2 3 5 8
+
+*/
+// v1 Recursion
+function fib(n) {
+    if (n < 2) {
+        return n;
+    }
+    return fib(n - 1) + fib(n - 2);
+}
+function printFibonacci(n) {
+    for (let i = 0; i < n; i++) {
+        console.log(fib(i));
+    }
+}
+printFibonacci(12);
+//V2 Recursion
+const fib2 = (num, arr = [0, 1]) => {
+    if (num < 2)
+        return arr;
+    const [nextToLast, last] = arr.slice(-2);
+    return fib2(num - 1, [...arr, nextToLast + last]);
+};
+console.log(fib2(12));
+// What number is in the nth position of the Fibonacci Sequence with no recursion?
+const fibonacciPos = (pos) => {
+    if (pos <= 1)
+        return pos;
+    const seq = [0, 1];
+    for (let i = 2; i <= pos; i++) {
+        const [nextToLast, last] = seq.slice(-2);
+        seq.push(nextToLast + last);
+    }
+    return seq[pos];
+};
+console.log(fibonacciPos(8));
+const fibonacciPos1 = (pos) => {
+    if (pos < 2) {
+        return pos;
+    }
+    return fibonacciPos1(pos - 1) + fibonacciPos1(pos - 2);
+};
+console.log(fibonacciPos1(8));
+// Getting stuff from a deep tree data structure
+const tree = {
+    name: 'John',
+    children: [
+        {
+            name: 'Jim',
+            children: [],
+        },
+        {
+            name: 'Zoe',
+            children: [
+                { name: 'Rob', children: [] },
+                {
+                    name: 'Karen',
+                    children: [
+                        {
+                            name: 'Diana',
+                            children: [
+                                { name: 'Denis', children: [] },
+                                {
+                                    name: 'Patrick',
+                                    children: [
+                                        { name: 'Chris', children: [] },
+                                        {
+                                            name: 'Tom',
+                                            children: [],
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                        { name: 'Bob', children: [] },
+                    ],
+                },
+            ],
+        },
+    ],
+};
+const printChildrenRecursive = (t) => {
+    if (t.children.length === 0) {
+        return;
+    }
+    t.children.forEach((child) => {
+        console.log(child.name);
+        printChildrenRecursive(child);
+    });
+};
+printChildrenRecursive(tree);
 //# sourceMappingURL=test.js.map
