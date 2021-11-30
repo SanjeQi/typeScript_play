@@ -204,3 +204,27 @@ const isPrime_1 = (num: number) => {
   }
   return true;
 };
+// check is a number is a prime number ---------------------------- V2
+const isPrime_2 = (num: number) => {
+  let primeFlag = true;
+  for (let i = 2; i < num / 2; i++) {
+    if (num % i === 0) {
+      primeFlag = false;
+      break;
+    }
+  }
+  if (primeFlag) {
+    console.log(num);
+  }
+};
+
+const printPrime = (min: number, max: number) => {
+  for (let i = min; i <= max; i++) {
+    if (i === 0 || i === 1) {
+      continue;
+    }
+    isPrime_2(i);
+  }
+};
+
+console.log(printPrime(0, 20));

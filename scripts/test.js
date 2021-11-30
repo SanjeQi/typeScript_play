@@ -189,9 +189,9 @@ const isPrime_1 = (num) => {
     return true;
 };
 // check is a number is a prime number ---------------------------- V2
-const isPrime2 = (num) => {
+const isPrime_2 = (num) => {
     let primeFlag = true;
-    for (let i = 2; i <= num / 2; i++) {
+    for (let i = 2; i < num / 2; i++) {
         if (num % i === 0) {
             primeFlag = false;
             break;
@@ -206,7 +206,7 @@ const printPrime = (min, max) => {
         if (i === 0 || i === 1) {
             continue;
         }
-        isPrime2(i);
+        isPrime_2(i);
     }
 };
 console.log(printPrime(0, 20));
