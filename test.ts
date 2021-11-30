@@ -112,3 +112,68 @@ const fibonacciPos1 = (pos) => {
   return fibonacciPos1(pos - 1) + fibonacciPos1(pos - 2);
 };
 console.log(fibonacciPos1(8));
+
+// Getting stuff from a deep tree data structure
+
+const tree = {
+  name: 'John',
+  children: [
+    {
+      name: 'Jim',
+      children: [],
+    },
+    {
+      name: 'Zoe',
+      children: [
+        { name: 'Rob', children: [] },
+        {
+          name: 'Karen',
+          children: [
+            {
+              name: 'Diana',
+              children: [
+                { name: 'Denis', children: [] },
+                {
+                  name: 'Patrick',
+                  children: [
+                    { name: 'Chris', children: [] },
+                    {
+                      name: 'Tom',
+                      children: [],
+                    },
+                  ],
+                },
+              ],
+            },
+            { name: 'Bob', children: [] },
+          ],
+        },
+      ],
+    },
+  ],
+};
+
+const printChildrenRecursive = (t) => {
+  if (t.children.length === 0) {
+    return;
+  }
+  t.children.forEach((child) => {
+    console.log(child.name);
+    printChildrenRecursive(child);
+  });
+};
+
+printChildrenRecursive(tree);
+
+/* 
+printChildrenRecursive('John')
+  printChildrenRecursive('Jim')
+  return
+  printChildrenRecursive('Zoe')
+   printChildrenRecursive('Rob')
+   return
+   printChildrenRecursive('Karen')
+    .....
+
+
+*/

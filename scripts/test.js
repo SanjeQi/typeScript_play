@@ -49,7 +49,7 @@ function factorial(num) {
 }
 console.log(factorial(5));
 /*
- ------------------------------ Fibonacci Sequence -----------------------------------------
+ ------------------------------ Fibonacci Sequence  -----------------------------------------
 Give a number n, find the first n elements of the fibonacci series.
 
 Now what is fibonacci series?  each number ( Fibonacci number ) is the sum of the two preceding numbers.
@@ -152,4 +152,16 @@ const printChildrenRecursive = (t) => {
     });
 };
 printChildrenRecursive(tree);
+/*
+printChildrenRecursive('John')
+  printChildrenRecursive('Jim')
+  return
+  printChildrenRecursive('Zoe')
+   printChildrenRecursive('Rob')
+   return
+   printChildrenRecursive('Karen')
+    .....
+
+
+*/
 //# sourceMappingURL=test.js.map
