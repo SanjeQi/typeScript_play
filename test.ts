@@ -177,3 +177,30 @@ printChildrenRecursive('John')
 
 
 */
+/* 
+ ------------------------------ Prime Numbers  -----------------------------------------
+Given two numbers min and max, find all the prime numbers in the range of min to max. (min and max included)
+
+Test Case
+function printPrime (min, max) {}
+
+printPrime(0, 20) - Returns 2 3 5 7 11 13 17 19
+*/
+
+// check is a number is a prime number ---------------------------- v1
+
+const isPrime_1 = (num: number) => {
+  if (num < 2) {
+    return false;
+  }
+  //modulus %
+  let root = Math.ceil(Math.sqrt(num));
+  console.log(root);
+
+  for (let i = 2; i <= root; i++) {
+    if (num % i === 0) {
+      return false;
+    }
+  }
+  return true;
+};
