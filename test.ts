@@ -247,3 +247,17 @@ const isPalindrome = (str) => {
 };
 
 console.log(isPalindrome('Racecar'));
+
+/* ------------------------------------------------------General Palindrome
+A more precise isPalindrome function defined below
+\W matches any non-word character (equal to [^a-zA-Z0-9_])
+_ matches the character _ literally (case sensitive)
+
+*/
+function isPalindromeGen(str) {
+  return (
+    str.replace(/[\W_]/g, '').toLowerCase() ===
+    str.replace(/[\W_]/g, '').toLowerCase().split('').reverse().join('')
+  );
+}
+console.log(isPalindromeGen('racecar'));
