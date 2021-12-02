@@ -229,7 +229,7 @@ const printPrime = (min: number, max: number) => {
 
 console.log(printPrime(0, 20));
 
-/*---------------------------------------------------------- Palindrome  -----------------------------
+/*---------------------------------------------------------- Palindrome ------------------------------------------------
 Given a string (str), determine if it is a palindrome.
 
 Note: A plaindrome is a word, phrase, or sequence that reads the same backwards as forwards, e.g. madam.
@@ -248,7 +248,7 @@ const isPalindrome = (str) => {
 
 console.log(isPalindrome('Racecar'));
 
-/* ------------------------------------------------------General Palindrome
+/* ------------------------------------------------------General Palindrome---------------------------------------------
 A more precise isPalindrome function defined below
 \W matches any non-word character (equal to [^a-zA-Z0-9_])
 _ matches the character _ literally (case sensitive)
@@ -261,3 +261,35 @@ function isPalindromeGen(str) {
   );
 }
 console.log(isPalindromeGen('racecar'));
+
+/**
+ * ---------------------------------------------------- Anagram --------------------------------------------------------
+ * 
+Given two strings (str1 and str2), determine if str1 is anagram of str2.
+
+Note: An anagram is a word, phrase, or name formed by rearranging the letters of another, such as spar, formed from rasp.
+
+Test Case
+function isAnagram (str) {}
+
+isAnagram('racecar', 'carrace') - Returns true
+isAnagram('racecar', 'carracr') - Returns false
+ */
+
+const isAnagram = (str1, str2) => {
+  if (
+    typeof str1 === 'string' &&
+    typeof str2 === 'string' &&
+    str1.length === str2.length
+  ) {
+    return (
+      str1.toLowerCase().split('').sort().join('') ===
+      str2.toLowerCase().split('').sort().join('')
+    );
+  } else {
+    return `${str1} is not an Anagram of ${str2}`;
+  }
+};
+console.log(isAnagram('racecar', 'carrac'));
+console.log(isAnagram('racecar', 'carrace'));
+console.log(isAnagram('rac', 'car'));

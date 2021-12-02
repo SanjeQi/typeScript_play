@@ -237,4 +237,31 @@ function isPalindromeGen(str) {
         str.replace(/[\W_]/g, '').toLowerCase().split('').reverse().join(''));
 }
 console.log(isPalindromeGen('racecar'));
+/**
+ * --------------------------------------------------------------------------------- Anagram
+ *
+Given two strings (str1 and str2), determine if str1 is anagram of str2.
+
+Note: An anagram is a word, phrase, or name formed by rearranging the letters of another, such as spar, formed from rasp.
+
+Test Case
+function isAnagram (str) {}
+
+isAnagram('racecar', 'carrace') - Returns true
+isAnagram('racecar', 'carracr') - Returns false
+ */
+const isAnagram = (str1, str2) => {
+    if (typeof str1 === 'string' &&
+        typeof str2 === 'string' &&
+        str1.length === str2.length) {
+        return (str1.toLowerCase().split('').sort().join('') ===
+            str2.toLowerCase().split('').sort().join(''));
+    }
+    else {
+        return `${str1} is not an Anagram of ${str2}`;
+    }
+};
+console.log(isAnagram('racecar', 'carrac'));
+console.log(isAnagram('racecar', 'carrace'));
+console.log(isAnagram('rac', 'car'));
 //# sourceMappingURL=test.js.map
