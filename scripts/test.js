@@ -210,4 +210,20 @@ const printPrime = (min, max) => {
     }
 };
 console.log(printPrime(0, 20));
+/*---------------------------------------------------------- Palindrome  -----------------------------
+Given a string (str), determine if it is a palindrome.
+
+Note: A plaindrome is a word, phrase, or sequence that reads the same backwards as forwards, e.g. madam.
+
+Test Case
+
+function isPalindrome (str) {}
+
+isPalindrome('racecar') - Returns true
+isPalindrome('race') - Returns false
+*/
+const isPalindrome = (str) => {
+    return str.toLowerCase() === str.toLowerCase().split('').reverse().join('');
+};
+console.log(isPalindrome('Racecar'));
 //# sourceMappingURL=test.js.map
