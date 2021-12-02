@@ -210,7 +210,7 @@ const printPrime = (min, max) => {
     }
 };
 console.log(printPrime(0, 20));
-/*---------------------------------------------------------- Palindrome  -----------------------------
+/*---------------------------------------------------------- Palindrome ------------------------------------------------
 Given a string (str), determine if it is a palindrome.
 
 Note: A plaindrome is a word, phrase, or sequence that reads the same backwards as forwards, e.g. madam.
@@ -226,7 +226,7 @@ const isPalindrome = (str) => {
     return str.toLowerCase() === str.toLowerCase().split('').reverse().join('');
 };
 console.log(isPalindrome('Racecar'));
-/* ------------------------------------------------------General Palindrome
+/* ------------------------------------------------------General Palindrome---------------------------------------------
 A more precise isPalindrome function defined below
 \W matches any non-word character (equal to [^a-zA-Z0-9_])
 _ matches the character _ literally (case sensitive)
@@ -238,7 +238,7 @@ function isPalindromeGen(str) {
 }
 console.log(isPalindromeGen('racecar'));
 /**
- * --------------------------------------------------------------------------------- Anagram
+ * ---------------------------------------------------- Anagram --------------------------------------------------------
  *
 Given two strings (str1 and str2), determine if str1 is anagram of str2.
 
@@ -250,6 +250,7 @@ function isAnagram (str) {}
 isAnagram('racecar', 'carrace') - Returns true
 isAnagram('racecar', 'carracr') - Returns false
  */
+//V1  ----------------------------------------------------
 const isAnagram = (str1, str2) => {
     if (typeof str1 === 'string' &&
         typeof str2 === 'string' &&
@@ -264,4 +265,21 @@ const isAnagram = (str1, str2) => {
 console.log(isAnagram('racecar', 'carrac'));
 console.log(isAnagram('racecar', 'carrace'));
 console.log(isAnagram('rac', 'car'));
+//V2 -----------------------------------------------------
+const sortString = (str) => {
+    if (!str) {
+        return;
+    }
+    return str.toLowerCase().split('').sort().join('');
+};
+const isAnagram2 = (str1, str2) => {
+    if (str1.length !== str2.length) {
+        return false;
+    }
+    return sortString(str1) === sortString(str2);
+};
+console.log('------------------');
+console.log(isAnagram2('racecar', 'carrac'));
+console.log(isAnagram2('racecar', 'carrace'));
+console.log(isAnagram2('rac', 'car'));
 //# sourceMappingURL=test.js.map

@@ -275,7 +275,7 @@ function isAnagram (str) {}
 isAnagram('racecar', 'carrace') - Returns true
 isAnagram('racecar', 'carracr') - Returns false
  */
-
+//V1  ----------------------------------------------------
 const isAnagram = (str1, str2) => {
   if (
     typeof str1 === 'string' &&
@@ -293,3 +293,24 @@ const isAnagram = (str1, str2) => {
 console.log(isAnagram('racecar', 'carrac'));
 console.log(isAnagram('racecar', 'carrace'));
 console.log(isAnagram('rac', 'car'));
+
+//V2 -----------------------------------------------------
+
+const sortString = (str) => {
+  if (!str) {
+    return;
+  }
+  return str.toLowerCase().split('').sort().join('');
+};
+
+const isAnagram2 = (str1, str2) => {
+  if (str1.length !== str2.length) {
+    return false;
+  }
+  return sortString(str1) === sortString(str2);
+};
+
+console.log('------------------');
+console.log(isAnagram2('racecar', 'carrac'));
+console.log(isAnagram2('racecar', 'carrace'));
+console.log(isAnagram2('rac', 'car'));
