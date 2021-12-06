@@ -329,8 +329,15 @@ reverseWords('Hello World') - Returns 'World Hello'
 reverseWords(' This is  a  test string ') - Returns 'string test a is This'
  
  */
+//V1
 function reverseWords(str: string) {
   return str.trim().split(/\s+/).reverse().join(' ');
 }
 
-console.log(reverseWords('This is a test string'));
+//V2
+const reverse = (str: string) => {
+  return str.split(' ').filter(Boolean).reverse().join(' ');
+};
+
+console.log(reverseWords('This is a test string version one'));
+console.log(reverse('This is a test string version two'));
