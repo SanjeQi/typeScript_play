@@ -282,4 +282,12 @@ console.log('------------------');
 console.log(isAnagram2('racecar', 'carrac'));
 console.log(isAnagram2('racecar', 'carrace'));
 console.log(isAnagram2('rac', 'car'));
+/**
+ * --------------------------------------------------- Reverse Words ---------------------------------------------------
+ *
+ */
+function reverseWords(str) {
+    return str.trim().split(/\s+/).reverse().join(' ');
+}
+console.log(reverseWords('This is a test string'));
 //# sourceMappingURL=test.js.map
