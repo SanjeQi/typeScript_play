@@ -307,4 +307,27 @@ const reverse = (str) => {
 };
 console.log(reverseWords('This is a test string version one'));
 console.log(reverse('This is a test string version two'));
+/*
+* --------------------------------------------------- Remove Vowels from a String -------------------------------------
+Given an input string (str), remove all vowels from the string.
+
+function removeVowels (str) {}
+
+removeVowels('Hello World') - Returns Hll Wrld
+*/
+//V1
+const removeVowels1 = (str) => {
+    // g - global, i - case insensitive
+    return str.replace(/[aeiou]/gi, '');
+};
+//V2
+const keepConsonants = (str) => {
+    const voc = ['a', 'e', 'i', 'o', 'u'];
+    return str
+        .split('')
+        .filter((letter) => !voc.includes(letter))
+        .join('');
+};
+console.log(removeVowels1('Hello World version one'));
+console.log(keepConsonants('Hello World version two'));
 //# sourceMappingURL=test.js.map
