@@ -330,4 +330,17 @@ const keepConsonants = (str) => {
 };
 console.log(removeVowels1('Hello World version one'));
 console.log(keepConsonants('Hello World version two'));
+/*
+ *--------------------------------------------------- Array of Objects_Getting stuff out.map ---------------------------
+ */
+const names = [
+    { firstname: 'Bruce', lastname: 'Wayne' },
+    { firstname: 'Clark', lastname: 'Kent' },
+];
+const fullnames = (arr) => {
+    return arr.map((name) => {
+        return `${name.firstname} ${name.lastname}`;
+    });
+};
+console.log(fullnames(names));
 //# sourceMappingURL=test.js.map
