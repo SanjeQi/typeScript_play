@@ -343,4 +343,27 @@ const fullnames = (arr) => {
     });
 };
 console.log(fullnames(names));
+/*
+---------------------------------------------------  Longest Word in a String ------------------------------------------
+ Longest Word in a String
+Given a string (str), find the longest word in the string.
+
+Note: If one more more words have the same length, return the first occurring word of the same length.
+
+function longestWord (str) {}
+
+longestWord('My name is Superman') - Returns 'Superman'
+longestWord('Hello world') - Returns 'Hello'
+*/
+const longestWord = (str) => {
+    return str.split(' ').reduce((acc, val) => {
+        if (val.length > acc.length) {
+            acc = val;
+        }
+        return acc;
+    }, '');
+};
+console.log(longestWord('My name is Superman'));
+console.log(longestWord('Cristi este numele meu'));
+console.log(longestWord('m am   am a'));
 //# sourceMappingURL=test.js.map
