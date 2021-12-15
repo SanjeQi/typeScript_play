@@ -390,7 +390,7 @@ const nums = [0, 1, 2, 3, 4];
 const index = [0, 1, 2, 2, 1];
 console.log(createArray(nums, index));
 /*
---------------------------------------------------- Union Intersection Difference ------------------------------------
+-------------------------------------------- Union Intersection Difference ------------------------------------
 Given two arrays (arr1) and (arr2) return the union, intersection, difference and symmetric difference of the two arrays.
 
  arr1 = [1, 2, 3]
@@ -435,4 +435,26 @@ console.log('intersection', instersection(arr1, arr2));
 console.log('difference1', difference1(arr1, arr2));
 console.log('difference1', difference1(arr2, arr1));
 console.log('symetricDiff', symetricDiff(arr1, arr2));
+/*
+-------------------------------------------- Flatten Array ------------------------------------
+Given a nested array (arr), return the flattened array.
+
+input: arr = [1, [2], [3, [[4]]]]
+flattenArray(arr) - Returns [1, 2, 3, 4]
+*/
+const arr = [1, [2], [3, [[4]]]];
+const arr11 = [[1], 2, [3, [4], 5], 6, [7], 8, [9], [10, [11, 12, [13, 14]]]];
+const flattenArray = (arr) => {
+    return arr.reduce((acc, el) => {
+        if (Array.isArray(el)) {
+            acc = acc.concat(flattenArray(el));
+        }
+        else {
+            acc = acc.concat(el);
+        }
+        return acc;
+    }, []);
+};
+console.log(flattenArray(arr));
+console.log(flattenArray(arr11));
 //# sourceMappingURL=test.js.map
