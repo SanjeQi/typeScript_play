@@ -389,4 +389,50 @@ function createArray(nums, index) {
 const nums = [0, 1, 2, 3, 4];
 const index = [0, 1, 2, 2, 1];
 console.log(createArray(nums, index));
+/*
+--------------------------------------------------- Union Intersection Difference ------------------------------------
+Given two arrays (arr1) and (arr2) return the union, intersection, difference and symmetric difference of the two arrays.
+
+ arr1 = [1, 2, 3]
+ arr2 = [2, 3, 4]
+
+union(arr1, arr2) - Returns [1, 2, 3, 2, 3, 4]
+intersection(arr1, arr2) - Returns [2, 3]
+difference(arr1, arr2) - Returns [1]
+difference(arr2, arr1) - Returns [4]
+symmetricDifference(arr1, arr2) - Returns [1, 4]
+*/
+const arr1 = [1, 2, 3];
+const arr2 = [2, 3, 4];
+// ---------Union ------------------------------------
+//V1
+const union1 = (arr1, arr2) => {
+    return [...arr1, ...arr2];
+};
+//V2 
+const union2 = (arr1, arr2) => {
+    const union = arr1.concat(arr2);
+    return union;
+};
+// ---------Intersection -----------------------------
+const instersection = (arr1, arr2) => {
+    return arr1.filter((item) => arr2.includes(item));
+};
+// --------- Difference -----------------------------
+const difference1 = (arr1, arr2) => {
+    return arr1.filter((el) => !arr2.includes(el));
+};
+// --------- Symetric Difference -----------------------------
+const symetricDiff = (arr1, arr2) => {
+    return arr1
+        .filter((el) => !arr2.includes(el))
+        .concat(arr2.filter((el) => !arr1.includes(el)));
+};
+// ----------------------------------------------------
+console.log('union1:', (union1(arr1, arr2)));
+console.log('union2:', (union2(arr1, arr2)));
+console.log('intersection', instersection(arr1, arr2));
+console.log('difference1', difference1(arr1, arr2));
+console.log('difference1', difference1(arr2, arr1));
+console.log('symetricDiff', symetricDiff(arr1, arr2));
 //# sourceMappingURL=test.js.map
