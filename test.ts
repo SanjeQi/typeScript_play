@@ -507,3 +507,36 @@ const flattenArray = (arr) => {
 
 console.log(flattenArray(arr));
 console.log(flattenArray(arr11));
+/* 
+------------------------------- Duplicate Elements -------------------------------
+Given an array (arr) of elements, one element in the array occurs twice. Find the element.
+
+function findDuplicate(arr) {}
+
+input: arr = [2,4,6,8,2]
+
+findDuplicate(arr) - Returns 2
+*/
+
+const arrSample = [2,4,6,8,2,4,8,6,10];
+
+//V1 for only the first duplicate element
+const findDuplicateElement = (arr) => {
+ const unique = [...new Set(arr)] 
+  return arr.find((num) => unique.includes(num))
+}
+//V2 Multiple duplicates 
+const findDuplicateElements = (arr) => {
+  const duplicates = []
+  const set = new Set()
+  for ( const element of arr) {
+    if(!set.has(element)){
+      set.add(element)
+    } else {
+      duplicates.push(element)
+    }
+  }
+  return duplicates.sort()
+}
+console.log(findDuplicateElement(arrSample));
+console.log(findDuplicateElements(arrSample));
