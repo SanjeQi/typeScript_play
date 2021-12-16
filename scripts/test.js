@@ -473,7 +473,7 @@ const findDuplicateElement = (arr) => {
     const unique = [...new Set(arr)];
     return arr.find((num) => unique.includes(num));
 };
-//V2
+//V2 Multiple duplicates 
 const findDuplicateElements = (arr) => {
     const duplicates = [];
     const set = new Set();
@@ -489,4 +489,42 @@ const findDuplicateElements = (arr) => {
 };
 console.log(findDuplicateElement(arrSample));
 console.log(findDuplicateElements(arrSample));
+/*
+ ---------------------------------------Non Repeating Words ---------------------------------------d
+Given two strings (str1) and (str2), return a list of all non-repeating words.
+
+function nonRepeatingWords(str1, str2) {}
+
+Inputs:
+str1 = 'Hello world'
+str2 = 'Hello Clark'
+nonRepeatingWords(str1, str2) - Returns ['world', 'Clark']
+
+Inputs:
+str1 = 'Hello Hello'
+str2 = 'Welcome Clark'
+nonRepeatingWords(str1, str2) - Returns ['Welcome', 'Clark']
+*/
+const str1 = 'Hello Hello';
+const str2 = 'Welcome Clark';
+const str3 = 'Hello world';
+const str4 = 'Hello Clark';
+const nonRepeatingWords = (str1, str2) => {
+    const map = new Map();
+    const res = [];
+    const str = `${str1} ${str2}`;
+    //Counting the occurence of each word 
+    str.split(' ').forEach(word => {
+        map.has(word) ? map.set(word, map.get(word) + 1) : map.set(word, 1);
+    });
+    //Select words which occur only once(value = 1 in the map )
+    for (let [key, value] of map) {
+        if (value === 1) {
+            res.push(key);
+        }
+    }
+    return res;
+};
+console.log(nonRepeatingWords(str1, str2));
+console.log(nonRepeatingWords(str3, str4));
 //# sourceMappingURL=test.js.map
