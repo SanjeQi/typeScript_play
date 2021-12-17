@@ -409,7 +409,7 @@ const arr2 = [2, 3, 4];
 const union1 = (arr1, arr2) => {
     return [...arr1, ...arr2];
 };
-//V2 
+//V2
 const union2 = (arr1, arr2) => {
     const union = arr1.concat(arr2);
     return union;
@@ -426,11 +426,12 @@ const difference1 = (arr1, arr2) => {
 const symetricDiff = (arr1, arr2) => {
     return arr1
         .filter((el) => !arr2.includes(el))
-        .concat(arr2.filter((el) => !arr1.includes(el)));
+        .concat(arr2)
+        .filter((el) => !arr1.includes(el));
 };
 // ----------------------------------------------------
-console.log('union1:', (union1(arr1, arr2)));
-console.log('union2:', (union2(arr1, arr2)));
+console.log('union1:', union1(arr1, arr2));
+console.log('union2:', union2(arr1, arr2));
 console.log('intersection', instersection(arr1, arr2));
 console.log('difference1', difference1(arr1, arr2));
 console.log('difference1', difference1(arr2, arr1));
@@ -473,7 +474,7 @@ const findDuplicateElement = (arr) => {
     const unique = [...new Set(arr)];
     return arr.find((num) => unique.includes(num));
 };
-//V2 Multiple duplicates 
+//V2 Multiple duplicates
 const findDuplicateElements = (arr) => {
     const duplicates = [];
     const set = new Set();
@@ -513,8 +514,8 @@ const nonRepeatingWords = (str1, str2) => {
     const map = new Map();
     const res = [];
     const str = `${str1} ${str2}`;
-    //Counting the occurence of each word 
-    str.split(' ').forEach(word => {
+    //Counting the occurence of each word
+    str.split(' ').forEach((word) => {
         map.has(word) ? map.set(word, map.get(word) + 1) : map.set(word, 1);
     });
     //Select words which occur only once(value = 1 in the map )
@@ -525,6 +526,7 @@ const nonRepeatingWords = (str1, str2) => {
     }
     return res;
 };
+//--------------------------------------------
 console.log(nonRepeatingWords(str1, str2));
 console.log(nonRepeatingWords(str3, str4));
 //# sourceMappingURL=test.js.map

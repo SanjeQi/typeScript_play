@@ -422,8 +422,8 @@ Input: nums = [0,1,2,3,4], index = [0,1,2,2,1]
 
 createArray(nums, index) - Returns [0,4,1,3,2]
 */
-function createArray(nums, index) {
-  let target = [];
+function createArray(nums: number[], index: number[]) {
+  let target: number[] = [];
   for (let i = 0; i < nums.length; i++) {
     target.splice(index[i], 0, nums[i]);
   }
@@ -447,43 +447,44 @@ difference(arr1, arr2) - Returns [1]
 difference(arr2, arr1) - Returns [4]
 symmetricDifference(arr1, arr2) - Returns [1, 4]
 */
-const arr1 = [1,2,3]
-const arr2 = [2,3,4]
+const arr1 = [1, 2, 3];
+const arr2 = [2, 3, 4];
 
 // ---------Union ------------------------------------
 //V1
-const union1 = (arr1,arr2) => {
-  return [...arr1,...arr2]
-}
-//V2 
-const union2 = (arr1,arr2) => { 
-  const union = arr1.concat(arr2)
-  return union
-}
+const union1 = (arr1, arr2) => {
+  return [...arr1, ...arr2];
+};
+//V2
+const union2 = (arr1, arr2) => {
+  const union = arr1.concat(arr2);
+  return union;
+};
 
 // ---------Intersection -----------------------------
 
-const instersection = (arr1,arr2) =>{
-  return arr1.filter((item) =>arr2.includes(item))
-}
+const instersection = (arr1, arr2) => {
+  return arr1.filter((item) => arr2.includes(item));
+};
 // --------- Difference -----------------------------
-const difference1 =(arr1,arr2) => {
- return arr1.filter((el)=>!arr2.includes(el))
-}
+const difference1 = (arr1, arr2) => {
+  return arr1.filter((el) => !arr2.includes(el));
+};
 // --------- Symetric Difference -----------------------------
-const symetricDiff = (arr1,arr2) => {
-    return arr1
-              .filter((el)=> !arr2.includes(el))
-              .concat(arr2.filter((el) => !arr1.includes(el)) 
-            }
+const symetricDiff = (arr1, arr2) => {
+  return arr1
+    .filter((el) => !arr2.includes(el))
+    .concat(arr2)
+    .filter((el) => !arr1.includes(el));
+};
 
 // ----------------------------------------------------
-console.log('union1:',(union1(arr1,arr2)));
-console.log('union2:', (union2(arr1,arr2)));
-console.log('intersection',instersection(arr1,arr2));
-console.log('difference1',difference1(arr1,arr2));
-console.log('difference1',difference1(arr2,arr1));
-console.log('symetricDiff',symetricDiff(arr1,arr2));
+console.log('union1:', union1(arr1, arr2));
+console.log('union2:', union2(arr1, arr2));
+console.log('intersection', instersection(arr1, arr2));
+console.log('difference1', difference1(arr1, arr2));
+console.log('difference1', difference1(arr2, arr1));
+console.log('symetricDiff', symetricDiff(arr1, arr2));
 
 /* 
 -------------------------------------------- Flatten Array ------------------------------------
@@ -493,18 +494,18 @@ input: arr = [1, [2], [3, [[4]]]]
 flattenArray(arr) - Returns [1, 2, 3, 4]
 */
 const arr = [1, [2], [3, [[4]]]];
-const arr11 = [[1],2,[3,[4],5],6,[7],8,[9],[10,[11,12,[13,14]]]]
+const arr11 = [[1], 2, [3, [4], 5], 6, [7], 8, [9], [10, [11, 12, [13, 14]]]];
 
 const flattenArray = (arr) => {
-  return arr.reduce((acc,el)=>{
-    if(Array.isArray(el)){
-      acc = acc.concat(flattenArray(el))
-    }else {
-      acc = acc.concat(el)
+  return arr.reduce((acc, el) => {
+    if (Array.isArray(el)) {
+      acc = acc.concat(flattenArray(el));
+    } else {
+      acc = acc.concat(el);
     }
-    return acc
-  },[])
-}
+    return acc;
+  }, []);
+};
 
 console.log(flattenArray(arr));
 console.log(flattenArray(arr11));
@@ -519,26 +520,26 @@ input: arr = [2,4,6,8,2]
 findDuplicate(arr) - Returns 2
 */
 
-const arrSample = [2,4,6,8,2,4,8,6,10];
+const arrSample = [2, 4, 6, 8, 2, 4, 8, 6, 10];
 
 //V1 for only the first duplicate element
-const findDuplicateElement = (arr) => {
- const unique = [...new Set(arr)] 
-  return arr.find((num) => unique.includes(num))
-}
-//V2 Multiple duplicates 
-const findDuplicateElements = (arr) => {
-  const duplicates = []
-  const set = new Set()
-  for ( const element of arr) {
-    if(!set.has(element)){
-      set.add(element)
+const findDuplicateElement = (arr: number[]) => {
+  const unique = [...new Set(arr)];
+  return arr.find((num) => unique.includes(num));
+};
+//V2 Multiple duplicates
+const findDuplicateElements = (arr: number[]) => {
+  const duplicates: number[] = [];
+  const set = new Set();
+  for (const element of arr) {
+    if (!set.has(element)) {
+      set.add(element);
     } else {
-      duplicates.push(element)
+      duplicates.push(element);
     }
   }
-  return duplicates.sort()
-}
+  return duplicates.sort();
+};
 console.log(findDuplicateElement(arrSample));
 console.log(findDuplicateElements(arrSample));
 /* 
@@ -550,35 +551,35 @@ function nonRepeatingWords(str1, str2) {}
 Inputs: 
 str1 = 'Hello world'
 str2 = 'Hello Clark'
-nonRepeatingWords(str1, str2) - Returns ['world', 'Clark']
+nonRepeatingWords(str1, str2) - Returns ['world', 'Clark'] 
 
 Inputs: 
 str1 = 'Hello Hello'
 str2 = 'Welcome Clark'
 nonRepeatingWords(str1, str2) - Returns ['Welcome', 'Clark']
 */
-const str1 = 'Hello Hello'
-const str2 = 'Welcome Clark'
+const str1 = 'Hello Hello';
+const str2 = 'Welcome Clark';
 
-const str3 = 'Hello world'
-const str4 = 'Hello Clark'
+const str3 = 'Hello world';
+const str4 = 'Hello Clark';
 
 const nonRepeatingWords = (str1, str2) => {
-const map = new Map()
-const res = []
-const str = `${str1} ${str2}`
-//Counting the occurence of each word 
-str.split(' ').forEach(word => {
-  map.has(word) ? map.set(word,map.get(word)+1) : map.set(word,1)
-})
-//Select words which occur only once(value = 1 in the map )
-for(let [key,value] of map){
-  if(value===1){
-    res.push(key)
-  } 
- }
- return res
-}
+  const map = new Map<string, number>();
+  const res: string[] = [];
+  const str = `${str1} ${str2}`;
+  //Counting the occurence of each word
+  str.split(' ').forEach((word) => {
+    map.has(word) ? map.set(word, map.get(word) + 1) : map.set(word, 1);
+  });
+  //Select words which occur only once(value = 1 in the map )
+  for (let [key, value] of map) {
+    if (value === 1) {
+      res.push(key);
+    }
+  }
+  return res;
+};
 //--------------------------------------------
-console.log(nonRepeatingWords(str1,str2))
-console.log(nonRepeatingWords(str3,str4))
+console.log(nonRepeatingWords(str1, str2));
+console.log(nonRepeatingWords(str3, str4));
