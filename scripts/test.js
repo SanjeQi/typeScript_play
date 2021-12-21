@@ -561,4 +561,36 @@ console.log(longestPalindrome('abcc ccdd'));
 console.log(longestPalindrome('Mad am'));
 console.log(longestPalindrome('ra cecaR'));
 console.log(longestPalindrome('big'));
+/*
+---------------------------------Longest Substring -------------------------------------------
+Given a string (str), find the length of the longest substring without repeating characters.
+
+function longestSubstringLength(str) {}
+
+longestSubstringLength('abcabcbd') - Returns 3 ('abc')
+longestSubstringLength('aaaa') - Returns 1 ('a')
+longestSubstringLength('abbcdb') - Returns 3 ('bcd')
+
+*/
+const longestSubstringLength = (str) => {
+    const set = new Set();
+    let i = 0;
+    let j = 0;
+    let max = 0;
+    while (i < str.length) {
+        if (!set.add(str.charAt(i))) {
+            //If character not in set, add it to the set and find new max length
+            set.add(str.charAt(i++));
+            max = Math.max(max, set.size);
+        }
+        else {
+            //If character in set,delete it so as to add the char  at the end to form a new word
+            set.delete(str.charAt(j++));
+        }
+    }
+    return max;
+};
+longestSubstringLength('abcabcbd');
+longestSubstringLength('aaaa');
+longestSubstringLength('abbcdb');
 //# sourceMappingURL=test.js.map
