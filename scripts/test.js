@@ -529,4 +529,36 @@ const nonRepeatingWords = (str1, str2) => {
 //--------------------------------------------
 console.log(nonRepeatingWords(str1, str2));
 console.log(nonRepeatingWords(str3, str4));
+//-----------------------------  Longest Palindrome -------------------------------
+/*
+Given a string (str) which consists of lowercase or uppercase letters, find the length of the longest
+palindromes that can be built with those letters.
+Note: This is case sensitive, for example "Aa" is not considered a palindrome.
+
+function longestPalindrome(str) {}
+longestPalindrome('abccccdd') - Returns 7 ('dccaccd')
+*/
+const longestPalindrome = (str) => {
+    const set = new Set();
+    let length = 0;
+    for (let letter of str) {
+        if (set.has(letter)) {
+            set.delete(letter);
+            length++;
+        }
+        else {
+            set.add(letter);
+        }
+    }
+    if (set.size) {
+        return 2 * length + 1;
+    }
+    else {
+        return 2 * length;
+    }
+};
+console.log(longestPalindrome('abcc ccdd'));
+console.log(longestPalindrome('Mad am'));
+console.log(longestPalindrome('ra cecaR'));
+console.log(longestPalindrome('big'));
 //# sourceMappingURL=test.js.map
