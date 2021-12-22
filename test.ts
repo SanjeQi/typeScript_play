@@ -558,31 +558,31 @@ str1 = 'Hello Hello'
 str2 = 'Welcome Clark'
 nonRepeatingWords(str1, str2) - Returns ['Welcome', 'Clark']
 */
-const str1 = 'Hello Hello';
-const str2 = 'Welcome Clark';
+// const str1 = 'Hello Hello';
+// const str2 = 'Welcome Clark';
 
-const str3 = 'Hello world';
-const str4 = 'Hello Clark';
+// const str3 = 'Hello world';
+// const str4 = 'Hello Clark';
 
-const nonRepeatingWords = (str1, str2) => {
-  const map = new Map<string, number>();
-  const res: string[] = [];
-  const str = `${str1} ${str2}`;
-  //Counting the occurence of each word
-  str.split(' ').forEach((word) => {
-    map.has(word) ? map.set(word, map.get(word) + 1) : map.set(word, 1);
-  });
-  //Select words which occur only once(value = 1 in the map )
-  for (let [key, value] of map) {
-    if (value === 1) {
-      res.push(key);
-    }
-  }
-  return res;
-};
-//--------------------------------------------
-console.log(nonRepeatingWords(str1, str2));
-console.log(nonRepeatingWords(str3, str4));
+// const nonRepeatingWords = (str1, str2) => {
+//   const map = new Map<string, number>();
+//   const res: string[] = [];
+//   const str = `${str1} ${str2}`;
+//   //Counting the occurence of each word
+//   str.split(' ').forEach((word) => {
+//     map.has(word) ? map.set(word, map.get(word) + 1) : map.set(word, 1);
+//   });
+//   //Select words which occur only once(value = 1 in the map )
+//   for (let [key, value] of map) {
+//     if (value === 1) {
+//       res.push(key);
+//     }
+//   }
+//   return res;
+// };
+// //--------------------------------------------
+// console.log(nonRepeatingWords(str1, str2));
+// console.log(nonRepeatingWords(str3, str4));
 
 //-----------------------------  Longest Palindrome -------------------------------
 /* 
