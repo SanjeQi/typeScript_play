@@ -650,3 +650,30 @@ const longestSubstringLength = (str) => {
 longestSubstringLength('abcabcbd');
 longestSubstringLength('aaaa');
 longestSubstringLength('abbcdb');
+/* 
+-------------------------------------------- Group Anagrams ---------------------------------------
+Given an array (arr) of strings, group anagrams together.
+
+function groupAnagrams(arr) {}
+
+Input: arr = ["eat", "tea", "tan", "ate", "nat", "bat"]
+
+groupAnagrams(arr) - Groups into ["ate","eat","tea"], ["nat","tan"], ["bat"]
+*/
+
+const groupAnagrams = (arr) => {
+  const map = new Map();
+  for (let word of arr) {
+    const key = [...word].sort().join('');
+    if (!map.has(key)) {
+      map.set(key, [word]);
+    } else {
+      let curr = map.get(key);
+      map.set(key, [...curr, word]);
+    }
+  }
+  return map.values();
+};
+
+const arrWords: string[] = ['eat', 'tea', 'tan', 'ate', 'nat', 'bat'];
+console.log(groupAnagrams(arrWords));
