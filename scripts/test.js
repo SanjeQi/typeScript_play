@@ -620,4 +620,16 @@ const groupAnagrams = (arr) => {
 };
 const arrWords = ['eat', 'tea', 'tan', 'ate', 'nat', 'bat'];
 console.log(groupAnagrams(arrWords));
+/*
+------------------------------- Local Storage & Session Storage & Cookies -------------------
+*/
+localStorage.setItem('name', 'Clark Kent');
+// localStorage.removeItem('name');
+console.log(localStorage.getItem('name'));
+sessionStorage.setItem('name', 'Bruce Wayns');
+sessionStorage.setItem('name', 'Bruce Wayne');
+console.log(sessionStorage.getItem('name'));
+document.cookie = 'name=Jon;expires=' + new Date(2022, 0, 7).toUTCString();
+document.cookie = 'lastName=Snow;expires=' + new Date(2022, 0, 8).toUTCString();
+console.log(document.cookie);
 //# sourceMappingURL=test.js.map
