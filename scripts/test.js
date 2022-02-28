@@ -632,4 +632,6 @@ console.log(sessionStorage.getItem('name'));
 document.cookie = 'name=Jon;expires=' + new Date(2022, 0, 7).toUTCString();
 document.cookie = 'lastName=Snow;expires=' + new Date(2022, 0, 8).toUTCString();
 console.log(document.cookie);
+console.log('lae lae lae porvu');
+console.log('lae lae lae porvu123');
 //# sourceMappingURL=test.js.map
