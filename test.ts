@@ -1,17 +1,15 @@
-/*   
+/*
 ------------------------------------ Sum of Numbers -------------------------------------------------
 You are given an array of two numbers [a,b]. Find the sum of those two numbers plus the sum of all the numbers between them.
 
 (Note: The lower number may not always be the first element in the array)
-
-
 
 Test Case
 
 function sum(arr) {}
 
 sum([1, 4]) - Returns 10
-sum([4, 1]) - Returns 10 
+sum([4, 1]) - Returns 10
 */
 
 function sum(arr) {
@@ -23,7 +21,7 @@ function sum(arr) {
   }
   return acc;
 }
-/* 
+/*
  ------------------------------ Factorial of a Number -----------------------------------------
 Give an integer (num), find the factorial of that integer.
 
@@ -36,7 +34,7 @@ Factorial of 4 = 24
 Test Case
 function factorial(num) {}
 
-factorial(0) - Returns 1  
+factorial(0) - Returns 1
 factorial(1) - Returns 1
 factorial(4) - Returns 24
 factorial(5) - Returns 120
@@ -49,7 +47,7 @@ function factorial(num) {
   return num * factorial(num - 1);
 }
 console.log(factorial(5));
-/* 
+/*
  ------------------------------ Fibonacci Sequence  -----------------------------------------
 Give a number n, find the first n elements of the fibonacci series.
 
@@ -165,7 +163,7 @@ const printChildrenRecursive = (t) => {
 
 printChildrenRecursive(tree);
 
-/* 
+/*
 printChildrenRecursive('John')
   printChildrenRecursive('Jim')
   return
@@ -175,9 +173,8 @@ printChildrenRecursive('John')
    printChildrenRecursive('Karen')
     .....
 
-
 */
-/* 
+/*
  ------------------------------ Prime Numbers  -----------------------------------------
 Given two numbers min and max, find all the prime numbers in the range of min to max. (min and max included)
 
@@ -264,7 +261,7 @@ console.log(isPalindromeGen('racecar'));
 
 /**
  * ---------------------------------------------------- Anagram --------------------------------------------------------
- * 
+ *
 Given two strings (str1 and str2), determine if str1 is anagram of str2.
 
 Note: An anagram is a word, phrase, or name formed by rearranging the letters of another, such as spar, formed from rasp.
@@ -318,7 +315,7 @@ console.log(isAnagram2('rac', 'car'));
  * --------------------------------------------------- Reverse Words ---------------------------------------------------
  *Given an input string (str), reverse the string word by word.
 
-Note: 
+Note:
 1. Your reversed string should not contain leading or trailing spaces
 2. You need to reduce multiple spaces between two words to a single space in the reversed string.
 
@@ -327,7 +324,7 @@ function reverseWords (str) {}
 
 reverseWords('Hello World') - Returns 'World Hello'
 reverseWords(' This is  a  test string ') - Returns 'string test a is This'
- 
+
  */
 //V1
 function reverseWords(str: string) {
@@ -342,7 +339,7 @@ const reverse = (str: string) => {
 console.log(reverseWords('This is a test string version one'));
 console.log(reverse('This is a test string version two'));
 
-/* 
+/*
 * --------------------------------------------------- Remove Vowels from a String -------------------------------------
 Given an input string (str), remove all vowels from the string.
 
@@ -369,8 +366,9 @@ const keepConsonants = (str) => {
 console.log(removeVowels1('Hello World version one'));
 console.log(keepConsonants('Hello World version two'));
 /*
- *--------------------------------------------------- Array of Objects_Getting stuff out.map ---------------------------
- */
+ *--------------------------------------------------- Array of Objects_Getting stuff fn1.map ---------------------------
+ */const fn2= outer    )
+
 const names = [
   { firstname: 'Bruce', lastname: 'Wayne' },
   { firstname: 'Clark', lastname: 'Kent' },
@@ -384,7 +382,7 @@ const fullnames = (arr) => {
 
 console.log(fullnames(names));
 
-/*  
+/*
 ---------------------------------------------------  Longest Word in a String ------------------------------------------
  Longest Word in a String
 Given a string (str), find the longest word in the string.
@@ -409,9 +407,9 @@ console.log(longestWord('My name is Superman'));
 console.log(longestWord('Batman has very expensive gear'));
 console.log(longestWord('m am   am a'));
 
-/* 
+/*
 --------------------------------------------------- Two arrays  -splice()  ------------------------------------------
- 
+
 Given two arrays of integers (nums) and (index), create and return a new array (arr) which satisfies the following :
 
 From left to right read nums[i] and index[i] and insert at index index[i] the value nums[i] in array (arr) .
@@ -434,11 +432,11 @@ const nums = [0, 1, 2, 3, 4];
 const index = [0, 1, 2, 2, 1];
 console.log(createArray(nums, index));
 
-/* 
+/*
 -------------------------------------------- Union Intersection Difference ------------------------------------
 Given two arrays (arr1) and (arr2) return the union, intersection, difference and symmetric difference of the two arrays.
 
- arr1 = [1, 2, 3] 
+ arr1 = [1, 2, 3]
  arr2 = [2, 3, 4]
 
 union(arr1, arr2) - Returns [1, 2, 3, 2, 3, 4]
@@ -486,7 +484,7 @@ console.log('difference1', difference1(arr1, arr2));
 console.log('difference1', difference1(arr2, arr1));
 console.log('symetricDiff', symetricDiff(arr1, arr2));
 
-/* 
+/*
 -------------------------------------------- Flatten Array ------------------------------------
 Given a nested array (arr), return the flattened array.
 
@@ -509,7 +507,7 @@ const flattenArray = (arr) => {
 
 console.log(flattenArray(arr));
 console.log(flattenArray(arr11));
-/* 
+/*
 ------------------------------- Duplicate Elements -------------------------------
 Given an array (arr) of elements, one element in the array occurs twice. Find the element.
 
@@ -542,18 +540,18 @@ const findDuplicateElements = (arr: number[]) => {
 };
 console.log(findDuplicateElement(arrSample));
 console.log(findDuplicateElements(arrSample));
-/* 
+/*
  ---------------------------------------Non Repeating Words ---------------------------------------d
 Given two strings (str1) and (str2), return a list of all non-repeating words.
 
 function nonRepeatingWords(str1, str2) {}
 
-Inputs: 
+Inputs:
 str1 = 'Hello world'
 str2 = 'Hello Clark'
-nonRepeatingWords(str1, str2) - Returns ['world', 'Clark'] 
+nonRepeatingWords(str1, str2) - Returns ['world', 'Clark']
 
-Inputs: 
+Inputs:
 str1 = 'Hello Hello'
 str2 = 'Welcome Clark'
 nonRepeatingWords(str1, str2) - Returns ['Welcome', 'Clark']
@@ -585,7 +583,7 @@ nonRepeatingWords(str1, str2) - Returns ['Welcome', 'Clark']
 // console.log(nonRepeatingWords(str3, str4));
 
 //-----------------------------  Longest Palindrome -------------------------------
-/* 
+/*
 Given a string (str) which consists of lowercase or uppercase letters, find the length of the longest
 palindromes that can be built with those letters.
 Note: This is case sensitive, for example "Aa" is not considered a palindrome.
@@ -617,7 +615,7 @@ console.log(longestPalindrome('Mad am'));
 console.log(longestPalindrome('ra cecaR'));
 console.log(longestPalindrome('big'));
 
-/* 
+/*
 ---------------------------------Longest Substring -------------------------------------------
 Given a string (str), find the length of the longest substring without repeating characters.
 
@@ -650,7 +648,7 @@ const longestSubstringLength = (str) => {
 longestSubstringLength('abcabcbd');
 longestSubstringLength('aaaa');
 longestSubstringLength('abbcdb');
-/* 
+/*
 -------------------------------------------- Group Anagrams ---------------------------------------
 Given an array (arr) of strings, group anagrams together.
 
@@ -677,7 +675,7 @@ const groupAnagrams = (arr) => {
 
 const arrWords: string[] = ['eat', 'tea', 'tan', 'ate', 'nat', 'bat'];
 console.log(groupAnagrams(arrWords));
-/* 
+/*
 ------------------------------- Local Storage & Session Storage & Cookies -------------------
 */
 localStorage.setItem('name', 'Clark Kent');
@@ -692,3 +690,341 @@ document.cookie = 'name=Jon;expires=' + new Date(2022, 0, 7).toUTCString();
 document.cookie = 'lastName=Snow;expires=' + new Date(2022, 0, 8).toUTCString();
 
 console.log(document.cookie);
+console.log('Lowe');
+
+function square(num: number) {
+  return num * num;
+}
+``;
+function memoizedSquare() {
+  let cache = {};
+  return function optimizedSquare(num: number) {
+    if (num in cache) {
+      console.log('Returning from cache');
+      return cache[num];
+    } else {
+      console.log('Caculating squre.Please wait for result :');
+      const result = square(num);
+      cache[num] = result;
+      return result;
+    }
+  };
+}
+
+const memoSquare = memoizedSquare();
+console.log(memoSquare(2));
+console.log(memoSquare(5));
+console.log(memoSquare(2));
+console.log(memoSquare(20));
+console.log(memoSquare(220));
+console.log(memoSquare(220));
+
+// 'this' keyword in JS
+//Implicit binding
+
+const person = {
+  name: 'Anamaria',
+  sayMyName() {
+    console.log(this.name);
+  },
+};
+
+person.sayMyName();
+
+//Explicit binding ---specify the execution context with call, apply, bind
+
+const superHero = {
+  name: 'Clark Kent',
+};
+
+function sayMyNameLoud(age: number, sex: string) {
+  console.log(`This is my name: ${this.name} and I am ${age} years old ${sex}`);
+}
+
+sayMyNameLoud.call(superHero, 24, 'Male');
+sayMyNameLoud.apply(superHero, [31, 'Female']);
+const sayLaterMyname = sayMyNameLoud.bind(superHero, 25, 'Male');
+sayLaterMyname();
+
+// Using a constructor or 'new' keyword
+
+function Person(name) {
+  // this = {}
+  this.name = name;
+}
+
+const person1 = new Person('Adreea');
+const person2 = new Person('Dani');
+console.log(person1);
+console.log(person2);
+
+// Default binding
+
+function saymayname() {
+  console.log(`My name is ${this.name}`);
+}
+//saymayname();
+
+const personcool = {
+  name: 'Tom Sayer',
+  sayMyNamefast() {
+    console.log(`My name is ${this.name}`);
+  },
+  superHero200: {
+    name: 'Batman',
+    sayMyNamefast() {
+      console.log(`My name is ${this.name}`);
+    },
+  },
+};
+
+personcool.superHero200.sayMyNamefast();
+
+function sum(a, b, c) {
+  return a + b + c;
+}
+
+function genericCurry(f) {
+  return function currify(...args) {
+    if (args.length >= f.length) {
+      return f.apply(this, args);
+    } else {
+      return function (...newArgs) {
+        return currify.apply(this, args.concat(newArgs));
+      };
+    }
+  };
+}
+
+function genericCurryV2(f) {
+  return function currify(...args) {
+    return args.length >= f.length
+      ? f.apply(this, args)
+      : currify.bind(this, ...args);
+  };
+}
+
+let curriedSum = genericCurry(sum);
+let curriedSumV2 = genericCurryV2(sum);
+curriedSum(2, 3, 4);
+console.log(curriedSum(2, 3)(4));
+console.log(curriedSum(2)(3, 4));
+console.log(curriedSum(2, 3, 4));
+console.log(curriedSum(2)(3)(4));
+
+console.log(curriedSumV2(2, 3)(4));
+console.log(curriedSumV2(2)(3, 4));
+console.log(curriedSumV2(2, 3, 4));
+console.log(curriedSumV2(2)(3)(4));
+
+Person.prototype.sayMyName = function () {
+  console.log(`My name is ${this.name}`);
+};
+Person.prototype.eat = function (food) {
+  console.log(`I'm eating ${food}`);
+};
+Person.prototype.sleep = function () {
+  console.log(`Sleeping as soon as I finish my work`);
+};
+
+function Person(name) {
+  let person = Object.create(Person.prototype);
+  person.name = name;
+  return person;
+}
+
+const person1 = Person('cristi');
+console.log(person1);
+console.log(person1.sayMyName(), person1.eat('sarmale'), person1.sleep());
+console.log(Person.prototype);
+console.log(Object.getPrototypeOf(person1).constructor);
+console.log(person1.constructor);
+console.log(person1 instanceof Person);
+
+Person.prototype.sayMyName = function () {
+  console.log(`My name is ${this.name}`);
+};
+Person.prototype.eat = function (food) {
+  console.log(`I'm eating ${food}`);
+};
+Person.prototype.sleep = function () {
+  console.log('Sleeping');
+};
+
+function Person(name: string) {
+  this.name = name;
+}
+
+const person1 = new Person('Constantinescu the Great');
+console.log(person1, 'instance of person1');
+console.log(Person.prototype.constructor);
+
+
+
+function Person(name: string, age: number, gender: string) {
+  this.name = name;
+  this.age = age;
+  this.gender = gender;
+}
+
+Person.prototype.sayName = function sayName() {
+  console.log(`My name is ${this.name}`);
+};
+Person.prototype.sayAge = function sayAge() {
+  console.log(`My age is ${this.age}`);
+};
+Person.prototype.sayGender = function sayGender() {
+  console.log(`My gender is ${this.sex}`);
+};
+
+const cristi = new Person('cristi', 40, 'male');
+console.log(Object.getPrototypeOf(cristi));
+console.log(Person.prototype);
+console.log(cristi instanceof Person);
+
+for (const key in cristi) {
+  if (cristi.hasOwnProperty(key)) {
+    console.log(`Own property: ${key}: ${cristi[key]}`);
+  } else {
+    console.log(`Inherit properties: ${key}: ${cristi[key]}`);
+  }
+}
+console.log(cristi instanceof Person);
+
+function PersonOld(name) {
+  this.name = name;
+}
+
+PersonOld.prototype.sayOld = function () {
+  console.log(`My name is Old ${this.name}`);
+};
+PersonOld.prototype.eatOld = function (food) {
+  console.log(`I'm eating old ${food}`);
+};
+PersonOld.prototype.sleep = function () {
+  console.log(`Old Sleeping after this`);
+};
+
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+  say() {
+    console.log(`My name is ${this.name}`);
+  }
+  eat(food) {
+    console.log(`I'm eating ${food}`);
+  }
+  sleep() {
+    console.log(`I'm sleeping`);
+  }
+}
+
+const cristi = new Person('Cristi');
+cristi.say();
+cristi.eat('sarmale');
+cristi.sleep();
+console.log(cristi.hasOwn);
+
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
+
+Person.prototype.say = function () {
+  console.log(`My name is ${this.name}`);
+};
+Person.prototype.eat = function (food) {
+  console.log(`I like to eat ${food}`);
+};
+Person.prototype.sleep = function () {
+  console.log('Sleeping');
+};
+
+function Programmer(name, age, language) {
+  // this = Object.create(Programmer.prototype)
+  Person.call(this, name, age);
+  this.language = language;
+  // return this
+}
+Programmer.prototype = Object.create(Person.prototype);
+
+Programmer.prototype.code = function (language) {
+  console.log(`I'm coding in ${this.language}`);
+};
+Programmer.prototype.constructor = Programmer;
+const biro = new Person('Anamaria', 40);
+const consta = new Programmer('Cristi', 36, 'JS_ES6');
+
+// Programmer.prototype.constructor = Programmer;
+console.log(biro);
+console.log(consta);
+console.log(consta.constructor);
+console.log(consta instanceof Programmer);
+
+const onj = {};
+console.log(onj);
+
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+  sayMyName() {
+    console.log(`My name is ${this.name}`);
+  }
+  eat(food) {
+    console.log(`I'm eating ${food}`);
+  }
+  sleep() {
+    console.log(`Sleepings`);
+  }
+}
+
+class Programmer extends Person {
+  constructor(name, languge) {
+    super(name);
+    this.language = languge;
+  }
+  code() {
+    console.log(`I'm coding in ${this.language}`);
+  }
+}
+
+const student = new Person('Anamaria');
+const coder = new Programmer('cristi', 'JavaScrip');
+
+student.sayMyName();
+student.eat('pizza');
+student.sleep();
+console.log(student.name);
+
+coder.sayMyName();
+coder.eat('sarmale');
+coder.sleep();
+coder.code();
+console.log(`coder.name: ${coder.name}`, `; coder.language: ${coder.language}`);
+
+function outer() {
+  let counter = 0;
+  function inner() {
+    counter++;
+    console.log(counter);
+  }
+  return inner;
+}
+
+const fn1 = outer();
+fn1();
+fn1();
+const fn2 = outer();
+fn2();
+fn2();
+
+function suma(a, b) {
+  const sum = a + b;
+  return;
+}
+
+function myFunction (str){
+  return str.nth
+}
