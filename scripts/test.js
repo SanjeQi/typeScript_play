@@ -843,6 +843,7 @@ function outer() {
         counter++;
         console.log(counter);
     }
+<<<<<<< HEAD
     return inner;
 }
 const fn1 = outer();
@@ -851,4 +852,90 @@ fn1();
 const fn2 = outer();
 fn2();
 fn2();
+=======
+    if (set.size) {
+        return 2 * length + 1;
+    }
+    else {
+        return 2 * length;
+    }
+};
+console.log(longestPalindrome('abcc ccdd'));
+console.log(longestPalindrome('Mad am'));
+console.log(longestPalindrome('ra cecaR'));
+console.log(longestPalindrome('big'));
+/*
+---------------------------------Longest Substring -------------------------------------------
+Given a string (str), find the length of the longest substring without repeating characters.
+
+function longestSubstringLength(str) {}
+
+longestSubstringLength('abcabcbd') - Returns 3 ('abc')
+longestSubstringLength('aaaa') - Returns 1 ('a')
+longestSubstringLength('abbcdb') - Returns 3 ('bcd')
+
+*/
+const longestSubstringLength = (str) => {
+    const set = new Set();
+    let i = 0;
+    let j = 0;
+    let max = 0;
+    while (i < str.length) {
+        if (!set.has(str.charAt(i))) {
+            // If character not in set, add it to set and find new max length
+            set.add(str.charAt(i++));
+            max = Math.max(max, set.size);
+        }
+        else {
+            // If character in set, delete it so as to add the character at the
+            // end to form a new word
+            set.delete(str.charAt(j++));
+        }
+    }
+    return max;
+};
+longestSubstringLength('abcabcbd');
+longestSubstringLength('aaaa');
+longestSubstringLength('abbcdb');
+/*
+-------------------------------------------- Group Anagrams ---------------------------------------
+Given an array (arr) of strings, group anagrams together.
+
+function groupAnagrams(arr) {}
+
+Input: arr = ["eat", "tea", "tan", "ate", "nat", "bat"]
+
+groupAnagrams(arr) - Groups into ["ate","eat","tea"], ["nat","tan"], ["bat"]
+*/
+const groupAnagrams = (arr) => {
+    const map = new Map();
+    for (let word of arr) {
+        const key = [...word].sort().join('');
+        if (!map.has(key)) {
+            map.set(key, [word]);
+        }
+        else {
+            let curr = map.get(key);
+            map.set(key, [...curr, word]);
+        }
+    }
+    return map.values();
+};
+const arrWords = ['eat', 'tea', 'tan', 'ate', 'nat', 'bat'];
+console.log(groupAnagrams(arrWords));
+/*
+------------------------------- Local Storage & Session Storage & Cookies -------------------
+*/
+localStorage.setItem('name', 'Clark Kent');
+// localStorage.removeItem('name');
+console.log(localStorage.getItem('name'));
+sessionStorage.setItem('name', 'Bruce Wayns');
+sessionStorage.setItem('name', 'Bruce Wayne');
+console.log(sessionStorage.getItem('name'));
+document.cookie = 'name=Jon;expires=' + new Date(2022, 0, 7).toUTCString();
+document.cookie = 'lastName=Snow;expires=' + new Date(2022, 0, 8).toUTCString();
+console.log(document.cookie);
+console.log('lae lae lae porvu');
+console.log('lae lae lae porvu123');
+>>>>>>> 6e05ef96a6706e7abd75e3fb052da10874c5ea62
 //# sourceMappingURL=test.js.map
