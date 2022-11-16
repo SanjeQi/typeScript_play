@@ -1,25 +1,4 @@
 "use strict";
-// // Write a function that takes a number (num) as argument
-// // If a is prime, return num
-// // If not, return the next higher prime number
-// function myFunction(a) {
-//   for (let i = 2; i < a; i++) {
-//     if (a % i === 0) {
-//       return myFunction(a + 1);
-//     }
-//   }
-// }
-// //   return a;
-// // }
-// myFunction(38);
-// myFunction(7);
-// myFunction(115);
-// myFunction(2000);
-// console.log(myFunction(38)); //Expected 41
-// console.log(myFunction(7)); //Expected 7
-// console.log(myFunction(115)); //Expected 127
-// console.log(myFunction(2000)); //Expected 2003
-// //---------------------------------------------------------------
 // // Write a function that takes two numbers, say x and y, as arguments
 // // Check if x is divisible by y
 // // If yes, return x
@@ -56,7 +35,6 @@
 // console.log(percentCalc(100, 50));
 // console.log(percentCalc(10, 1));
 // console.log(percentCalc(500, 25));
-// ------------------------------------------------------------
 // // Write a function that takes two strings (a and b) as arguments
 // // Beginning at the end of 'a', insert 'b' after every 3rd character of 'a'
 // // // Return the resulting string
@@ -85,7 +63,7 @@
 //     .fill(0)
 //     .map((val, i) => String.fromCharCode(i + 97))
 //     .reduce((acc, val) => {
-//       for(let i = 0; i <= inputStr.length)
+//       for (let i = 0; i <= inputStr.length; ) {}
 //       return acc;
 //     }, []);
 //   return alphabet;
@@ -93,37 +71,77 @@
 // console.log(nextLetter('bnchmf')); //'coding'
 // console.log(nextLetter('bgddrd')); //'cheese';
 // console.log(nextLetter('sdrshmf')); //
+// //===========================================================================
+// //Write a function that takes two numbers (a and b) as arguments. If a is smaller than b, divide a by b. Otherwise, multiply both numbers. Return the resulting value
+// const divOperatrorFunc = (a: number, b: number) => (a < b ? a / b : a * b);
+// console.log(divOperatrorFunc(2, 0.5));
+// //=========================================================================
+// //Round a to the 2nd digit after the comma. Return the rounded number
+// const roundFunc = (a: number) => Number(a.toFixed(2));
+// console.log(roundFunc(2.123495));
+// //=========================================================================
+// //Split a into its individual digits and return them in an array
+// const splitNumberInDigits = (inputNumber: number) =>
+//   inputNumber
+//     .toString()
+//     .split('')
+//     .map((str) => Number(str));
+// console.log(splitNumberInDigits(1000));
+// //=========================================================================
+// //Clear up the chaos behind these strings: 'java', 'tpi%rcs' => 'Javascript'; 'c%ountry', 'edis' => 'Countryside' ; 'down', 'nw%ot' => 'Downtown'
+// const strFix = (str1: string, str2: string) => {
+//   str1 = (str1.charAt(0).toUpperCase() + str1.slice(1))
+//     .split('')
+//     .filter((char) => char !== '%')
+//     .join('');
+//   str2 = str2
+//     .split('')
+//     .reverse()
+//     .filter((char) => char !== '%')
+//     .join('');
+//   return str1 + str2;
+// };
+// console.log(strFix('java', 'tpi%rcs'));
+// console.log(strFix('c%ountry', 'edis'));
+// console.log(strFix('down', 'nw%ot'));
 //===========================================================================
-//Write a function that takes two numbers (a and b) as arguments. If a is smaller than b, divide a by b. Otherwise, multiply both numbers. Return the resulting value
-const divOperatrorFunc = (a, b) => (a < b ? a / b : a * b);
-console.log(divOperatrorFunc(2, 0.5));
-//=========================================================================
-//Round a to the 2nd digit after the comma. Return the rounded number
-const roundFunc = (a) => Number(a.toFixed(2));
-console.log(roundFunc(2.123495));
-//=========================================================================
-//Split a into its individual digits and return them in an array
-const splitNumberInDigits = (inputNumber) => inputNumber
-    .toString()
-    .split('')
-    .map((str) => Number(str));
-console.log(splitNumberInDigits(1000));
-//=========================================================================
-//Write a function that joins these strings together such that they form the following words: 'java', 'tpi%rcs' => 'Javascript', 'c%ountry', 'edis' => 'Countryside', and 'down', 'nw%ot' => 'Downtown'.
-const fixStrings = (str1, str2) => {
-    str1 = str1
-        .split('')
-        .map((char) => str1[0].toUpperCase())
-        .filter((char) => char !== '%')
-        .join('');
-    str2 = str2
-        .split('')
-        .reverse()
-        .filter((char) => char !== '%')
-        .join('');
-    return str1 + str2;
+//If a is prime, return a. If not, return the next higher prime number
+const primeNextPrime = (num) => {
+    for (let i = 2; i < num; i++) {
+        if (num % i === 0) {
+            return primeNextPrime(num + 1);
+        }
+    }
+    return num;
 };
-console.log(fixStrings('down', 'nw%ot'));
-console.log(fixStrings('java', 'tpi%rcs'));
-console.log(fixStrings('c%ountry', 'edis'));
+console.log(primeNextPrime(38));
+console.log(primeNextPrime(7));
+console.log(primeNextPrime(115));
+console.log(primeNextPrime(2000));
+//===========================================================================
+// Write a function that takes two numbers, say x and y, as arguments. Check if x is divisible by y. If yes, return x. If not, return the next higher natural number that is divisible by y
+const nextNumDivisible1 = (x, y) => {
+    if (x % y === 0) {
+        return x;
+    }
+    else if (x < 0) {
+        return 0;
+    }
+    else {
+        return nextNumDivisible1(x + 1, y);
+    }
+};
+// console.log(nextNumDivisible1(1, 23));
+// console.log(nextNumDivisible1(23, 23));
+// console.log(nextNumDivisible1(7, 3));
+// console.log(nextNumDivisible1(-5, 7));
+const nextNumDivisible2 = (x, y) => {
+    while (x % y !== 0)
+        x++;
+    return x;
+};
+console.log(nextNumDivisible2(1, 23));
+console.log(nextNumDivisible2(23, 23));
+console.log(nextNumDivisible2(7, 3));
+console.log(nextNumDivisible2(-5, 7));
 //# sourceMappingURL=test.js.map
