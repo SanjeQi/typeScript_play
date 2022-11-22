@@ -53,24 +53,6 @@
 // // console.log(arr1);
 // // console.log(arr1.splice(2, 3, 'insert1', 'insert2'));
 // // console.log(arr1);
-// //---------------------------------------------------------------------------------
-// // Write a function that takes a string as argument
-// // As it is, the string has no meaning
-// // Increment each letter to the next letter in the alphabet
-// // Return the correct word
-// const nextLetter = (inputStr: string) => {
-//   let alphabet = Array(26)
-//     .fill(0)
-//     .map((val, i) => String.fromCharCode(i + 97))
-//     .reduce((acc, val) => {
-//       for (let i = 0; i <= inputStr.length; ) {}
-//       return acc;
-//     }, []);
-//   return alphabet;
-// };
-// console.log(nextLetter('bnchmf')); //'coding'
-// console.log(nextLetter('bgddrd')); //'cheese';
-// console.log(nextLetter('sdrshmf')); //
 // //===========================================================================
 // //Write a function that takes two numbers (a and b) as arguments. If a is smaller than b, divide a by b. Otherwise, multiply both numbers. Return the resulting value
 // const divOperatrorFunc = (a: number, b: number) => (a < b ? a / b : a * b);
@@ -144,4 +126,29 @@ console.log(nextNumDivisible2(1, 23));
 console.log(nextNumDivisible2(23, 23));
 console.log(nextNumDivisible2(7, 3));
 console.log(nextNumDivisible2(-5, 7));
+//============================================================================================
+//Write a function that takes two strings (a and b) as arguments. Beginning at the end of 'a', insert 'b' after every 3rd character of 'a'. Return the resulting string.
+const inserChar = (a, b) => {
+    let result = [];
+    let rest = a;
+    while (rest.length >= 1) {
+        result.push(rest.slice(-3));
+        rest = rest.slice(0, -3);
+    }
+    return result.reverse().join(b);
+};
+console.log(inserChar('1234567', '.'));
+console.log(inserChar('abcde', '$'));
+console.log(inserChar('zxyzxyzxyzxyzxyz', 'w'));
+//========================================================================================
+//Write a function that takes a string as argument. As it is, the string has no meaning. Increment each letter to the next letter in the alphabet. Return the correct word
+const nextLetter = (inputStr) => {
+    return inputStr
+        .split('')
+        .map((e) => String.fromCharCode(e.charCodeAt() + 1))
+        .join('');
+};
+console.log(nextLetter('bnchmf')); //'coding'
+console.log(nextLetter('bgddrd')); //'cheese';
+console.log(nextLetter('sdrshmf')); //'testing'
 //# sourceMappingURL=test.js.map
