@@ -155,3 +155,91 @@ const nextLetter = (inputStr: string) => {
 console.log(nextLetter('bnchmf')); //'coding'
 console.log(nextLetter('bgddrd')); //'cheese';
 console.log(nextLetter('sdrshmf')); //'testing'
+//=================================================Arrays==========================================
+//Write a function that takes an array (a) as argument. Extract the last 3 elements of 'a'. Return the resulting array
+const removeLastThree = (a: number[]) => a.slice(-3);
+console.log(removeLastThree([1, 2, 3, 4, 5]));
+//=================================================Arrays==========================================
+// A Function that takes an array (a) and a value (n) as argument. Return the nth element of 'a'
+const nthElemArr = (a: number[], n: number) => a[n - 1];
+console.log(nthElemArr([1, 2, 3, 4, 5], 3));
+console.log(nthElemArr([10, 9, 8, 7, 6], 5));
+console.log(nthElemArr([7, 2, 1, 6, 3], 1));
+//=================================================Arrays==========================================
+//Write a function that takes an array (a) as argument. Remove the first 3 elements of 'a'.
+const removeFristThree = (a: number[]) => a.slice(3);
+console.log(removeFristThree([1, 2, 3, 4]));
+console.log(removeFristThree([5, 4, 3, 2, 1, 0]));
+console.log(removeFristThree([99, 1, 1]));
+//=================================================Arrays==========================================
+//Extract the first 3 elements of a. Return the resulting array
+const extractFirstThreeArr = (a: number[]) => a.slice(0, 3);
+console.log(extractFirstThreeArr([1, 2, 3, 4]));
+console.log(extractFirstThreeArr([5, 4, 3, 2, 1, 0]));
+console.log(extractFirstThreeArr([99, 1, 1]));
+//=================================================Arrays==========================================
+//Write a function that takes an array a and number n. It should return the last n elements of a.
+const nthLastGroupArr = (a: number[], n: number) => a.slice(-n);
+console.log(nthLastGroupArr([1, 2, 3, 4, 5], 2));
+console.log(nthLastGroupArr([1, 2, 3], 6));
+console.log(nthLastGroupArr([1, 2, 3, 4, 5, 6, 7, 8], 3));
+//=================================================Arrays==========================================
+//The function should remove all elements equal to 'b' from the array. Return the filtered array.
+const removeElemEqualToB = (a: any[], b: any) => a.filter((el) => el !== b);
+console.log(removeElemEqualToB([1, 2, 3], 2));
+console.log(removeElemEqualToB([1, 2, '2'], '2'));
+console.log(removeElemEqualToB([false, '2', 1], false));
+console.log(removeElemEqualToB([1, 2, '2', 1], 1));
+//=================================================Arrays==========================================
+//Return the number of negative values in the array
+const howManyNegative = (a: number[]) => {
+  return a.filter((el) => el < 0);
+};
+console.log(howManyNegative([1, -2, 2, -4]));
+console.log(howManyNegative([0, 9, 1]));
+console.log(howManyNegative([4, -3, 2, 1, 0]));
+//=================================================Arrays==========================================
+//Sort the array elements alphabetically
+const sortArrAlphabetically = (arr: string[]) => arr.sort();
+console.log(sortArrAlphabetically(['b', 'c', 'd', 'a']));
+//=================================================Arrays==========================================
+const descendingArr = (arr: number[]) => arr.sort((a, b) => b - a);
+console.log(descendingArr([1, 3, 2]));
+console.log(descendingArr([4, 2, 3, 1]));
+//=================================================Arrays==========================================
+//Sum of the numbers
+const sumElArr = (arr: number[]) => arr.reduce((acc, num) => acc + num);
+console.log(sumElArr([10, 100, 40]));
+console.log(sumElArr([10, 100, 1000, 1]));
+console.log(sumElArr([-50, 0, 50, 200]));
+//=================================================Arrays==========================================
+//Average of the numbers.
+const averageElArr = (arr: number[]) =>
+  arr.reduce((acc, num) => (acc += num)) / arr.length;
+console.log(averageElArr([10, 100, 40]));
+console.log(averageElArr([10, 100, 1000]));
+console.log(averageElArr([-50, 0, 50, 200]));
+//=================================================Arrays==========================================
+//Return the longest string from an array of strings
+const longestStringArr = (arr: string[]) =>
+  arr.reduce((a, b) => (a.length <= b.length ? b : a));
+
+console.log(longestStringArr(['help', 'me']));
+console.log(longestStringArr(['I', 'need', 'candy']));
+//=================================================Arrays==========================================
+//Check if all array elements are equal
+//v1
+const equalElements1 = (arr: any[]) => {
+  return new Set(arr).size === 1;
+};
+
+//v2
+const equalElements2 = (arr: any[]) => arr.every((el) => el === arr[0]);
+
+console.log(equalElements2([true, true, true, true]));
+console.log(equalElements2(['test', 'test', 'test']));
+console.log(equalElements2([1, 1, 1, 2]));
+console.log(equalElements2(['10', 10, 10, 10]));
+//=================================================Arrays==========================================
+//=================================================Arrays==========================================
+//=================================================Arrays==========================================
