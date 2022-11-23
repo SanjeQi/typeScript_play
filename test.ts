@@ -241,5 +241,80 @@ console.log(equalElements2(['test', 'test', 'test']));
 console.log(equalElements2([1, 1, 1, 2]));
 console.log(equalElements2(['10', 10, 10, 10]));
 //=================================================Arrays==========================================
-//=================================================Arrays==========================================
-//=================================================Arrays==========================================
+// Flatten array
+//v1
+const flattenArrs1 = (...arrays: any[]) =>
+  arrays.reduce((acc, cur) => {
+    acc.concat(cur), [];
+  });
+//v2
+const flattenArrs2 = (...arrays) => arrays.flat();
+
+console.log(flattenArrs2([1, 2, 3], [4, 5, 6]));
+console.log(flattenArrs2(['a', 'b', 'c'], [4, 5, 6]));
+console.log(flattenArrs2([true, true], [1, 2], ['a', 'b']));
+//===============================================Arrays==========================================
+//Sort array by object property - b
+
+//v1
+const sortArrByObjectPropertyB = (inputArr: any[]) =>
+  inputArr.sort((obj1, obj2) => obj1.b - obj2.b);
+
+console.log(
+  sortArrByObjectPropertyB([
+    { a: 1, b: 2 },
+    { a: 5, b: 4 },
+  ])
+);
+console.log(
+  sortArrByObjectPropertyB([
+    { a: 2, b: 10 },
+    { a: 5, b: 4 },
+  ])
+);
+console.log(
+  sortArrByObjectPropertyB([
+    { a: 1, b: 7 },
+    { a: 2, b: 1 },
+  ])
+);
+//v2
+const sortArrByObjectPropertyB2 = (arr: any[]) =>
+  arr.sort((obj1, obj2) => (obj1.b > obj2.b ? obj1 : obj2));
+console.log(
+  sortArrByObjectPropertyB([
+    { a: 1, b: 2 },
+    { a: 5, b: 4 },
+  ])
+);
+console.log(
+  sortArrByObjectPropertyB([
+    { a: 2, b: 10 },
+    { a: 5, b: 4 },
+  ])
+);
+console.log(
+  sortArrByObjectPropertyB([
+    { a: 1, b: 7 },
+    { a: 2, b: 1 },
+  ])
+);
+//===============================================Arrays==========================================
+//Merge two arrays with duplicate values
+const mergeArraysUniqueValuesOnly = (arr1, arr2: number[]) =>
+  [...new Set(arr1.concat(arr2))].sort((a, b) => a - b);
+console.log(mergeArraysUniqueValuesOnly([1, 2, 3], [3, 4, 5]));
+console.log(
+  mergeArraysUniqueValuesOnly([-10, 22, 333, 42], [-11, 5, 22, 41, 42])
+);
+//===============================================================================================
+//Sum up all array elements with values greater than b
+const sumArrElementsGreaterThanb = (arr: number[], b: number) => {
+  return arr.reduce((acc, cur) => {
+    cur > b ? (acc += cur) : null;
+    return acc;
+  }, 0);
+};
+console.log(sumArrElementsGreaterThanb([1, 2, 3, 4, 5, 6, 7], 2));
+console.log(sumArrElementsGreaterThanb([-10, -11, -3, 1, -4], -3));
+console.log(sumArrElementsGreaterThanb([78, 99, 100, 101, 401], 99));
