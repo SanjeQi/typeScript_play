@@ -274,7 +274,7 @@ console.log(sortArrByObjectPropertyB([
 const mergeArraysUniqueValuesOnly = (arr1, arr2) => [...new Set(arr1.concat(arr2))].sort((a, b) => a - b);
 console.log(mergeArraysUniqueValuesOnly([1, 2, 3], [3, 4, 5]));
 console.log(mergeArraysUniqueValuesOnly([-10, 22, 333, 42], [-11, 5, 22, 41, 42]));
-//===============================================================================================
+//===============================================Arrays==========================================
 //Sum up all array elements with values greater than b
 const sumArrElementsGreaterThanb = (arr, b) => {
     return arr.reduce((acc, cur) => {
@@ -285,4 +285,38 @@ const sumArrElementsGreaterThanb = (arr, b) => {
 console.log(sumArrElementsGreaterThanb([1, 2, 3, 4, 5, 6, 7], 2));
 console.log(sumArrElementsGreaterThanb([-10, -11, -3, 1, -4], -3));
 console.log(sumArrElementsGreaterThanb([78, 99, 100, 101, 401], 99));
+//===============================================Arrays==========================================
+//Create a range of numbers [] * between min and max
+const rangeOfNumbersArr = (a, b) => {
+    let range = [];
+    while (a <= b) {
+        range.push(a++);
+    }
+    return range;
+};
+console.log(rangeOfNumbersArr(2, 10));
+console.log(rangeOfNumbersArr(1, 3));
+console.log(rangeOfNumbersArr(-5, 5));
+console.log(rangeOfNumbersArr(2, 7));
+//===============================================Arrays==========================================
+//Group array of strings by first letter * Write a function that takes an array of strings as argument. Group those strings by their first letter. Return an object that contains properties with keys representing first letters. The values should be arrays of strings containing only the corresponding strings. For example, the array ['Alf', 'Alice', 'Ben'] should be transformed to. { a: ['Alf', 'Alice'], b: ['Ben']}
+const ojbFromStringSortArr = (arr) => {
+    return arr.reduce((acc, cur) => {
+        const firstLetter = cur.toLowerCase().charAt(0);
+        return { ...acc, [firstLetter]: [...(acc[firstLetter] || []), cur] };
+    }, {});
+};
+console.log(ojbFromStringSortArr(['Alf', 'Alice', 'Ben'])); // { a: ['Alf', 'Alice'], b: ['Ben']}
+console.log(ojbFromStringSortArr(['Ant', 'Bear', 'Bird'])); //{ a: ['Ant'], b: ['Bear', 'Bird']}
+console.log(ojbFromStringSortArr(['Berlin', 'Paris', 'Prague'])); //{ b: ['Berlin'], p: ['Paris', 'Prague']}
+//=================================================================================================
+// Define an array with conditional elements
+// Write a function that takes an array with arbitrary elements and a number as arguments. Return a new array, the first element should be either the given number itself. or zero if the number is smaller than 6. The other elements should be the elements of the original array. Try not to mutate the original array
+const arrConditional = (arrO, num) => {
+    const resultArr = num < 6 ? [0, ...arrO] : [num, ...arrO];
+    return resultArr;
+};
+console.log(arrConditional([1, 2, 3], 6));
+console.log(arrConditional(['a', 'b'], 2));
+console.log(arrConditional([null, false], 11));
 //# sourceMappingURL=test.js.map
