@@ -343,7 +343,7 @@ const ojbFromStringSortArr = (arr: string[]) => {
 console.log(ojbFromStringSortArr(['Alf', 'Alice', 'Ben'])); // { a: ['Alf', 'Alice'], b: ['Ben']}
 console.log(ojbFromStringSortArr(['Ant', 'Bear', 'Bird'])); //{ a: ['Ant'], b: ['Bear', 'Bird']}
 console.log(ojbFromStringSortArr(['Berlin', 'Paris', 'Prague'])); //{ b: ['Berlin'], p: ['Paris', 'Prague']}
-//=================================================================================================
+//===============================================Arrays==========================================
 // Define an array with conditional elements
 // Write a function that takes an array with arbitrary elements and a number as arguments. Return a new array, the first element should be either the given number itself. or zero if the number is smaller than 6. The other elements should be the elements of the original array. Try not to mutate the original array
 const arrConditional = (arrO: any[], num: number) => {
@@ -353,3 +353,16 @@ const arrConditional = (arrO: any[], num: number) => {
 console.log(arrConditional([1, 2, 3], 6));
 console.log(arrConditional(['a', 'b'], 2));
 console.log(arrConditional([null, false], 11));
+//===============================================Arrays==========================================
+// Get every nth element of array
+// Write a function that takes an array (a) and a value (n) as arguments. Save every nth element in a new array. Return the new array
+const nthArrElem = (a: number[], n: number) => {
+  const result = [];
+  for (let i = n - 1; i < a.length; i += n) {
+    result.push(a[i]);
+  }
+  return result;
+};
+console.log(nthArrElem([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3));
+console.log(nthArrElem([10, 9, 8, 7, 6, 5, 4, 3, 2, 1], 5));
+console.log(nthArrElem([7, 2, 1, 6, 3, 4, 5, 8, 9, 10], 2));
