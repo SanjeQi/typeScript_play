@@ -84,9 +84,56 @@ console.log('asfasfa');
 // Write a function that takes an object as argument. It should return an object with all original object properties. except for the property with key 'b
 const removePropFromObj = (obj) => {
   const { b, ...rest } = obj;
-  return rest;
+  return [rest, obj];
 };
 console.log(removePropFromObj({ a: 1, b: 7, c: 3 }));
 // console.log(removePropFromObj({ b: 0, a: 7, d: 8 }));
 // console.log(removePropFromObj({ e: 6, f: 4, b: 5, a: 3 }));
 //===============================================Objects==========================================
+// Return nested object property
+// Write a function that takes an object as argument. In some cases the object contains other objects with some deeply nested properties. Return the property 'b' of object 'a' inside the original object if it exists. If not, return undefined
+interface Obj1 {
+  [key: string]: number | {};
+}
+const returnNesteProp = (obj: Obj1) => {
+  return obj?.a?.b;
+};
+console.log(returnNesteProp({ a: 1 }));
+console.log(returnNesteProp({ a: { b: { c: 3 } } }));
+console.log(returnNesteProp({ b: { a: 1 } }));
+console.log(returnNesteProp({ a: { b: 2 } }));
+//===============================================Objects==========================================
+// Sum object values
+// Write a function that takes an object (a) as argument. Return the sum of all object a?: number;
+interface Obj {
+  [key: string]: number;
+}
+const sumObjValues = (obj: Obj) => {
+  return Object.values(obj).reduce((a, b) => a + b, 0);
+};
+console.log(sumObjValues({ a: 1, b: 2, c: 3 }));
+console.log(sumObjValues({ j: 9, i: 2, x: 3, z: 4 }));
+console.log(sumObjValues({ w: 15, x: 22, y: 13 }));
+//===============================================Objects==========================================
+// Merge two objects with matching keys
+// Write a function that takes two objects as arguments. Unfortunately, the property 'b' in the second object has the wrong key. It should be named 'd' instead. Merge both objects and correct the wrong property name. Return the resulting object. It should have the properties 'a', 'b', 'c', 'd', and 'e'
+const mergeObjWithMachStrings = (obj1: Obj, obj2: Obj) => {
+  const { b, ...rest } = obj2;
+  return { ...obj1, ...rest, d: b };
+};
+console.log(mergeObjWithMachStrings({ a: 1, b: 2 }, { c: 3, b: 4, e: 5 })); //{ a: 1, b: 2, c: 3, e: 5, d: 4}
+console.log(mergeObjWithMachStrings({ a: 5, b: 4 }, { c: 3, b: 1, e: 2 })); //{ a: 5, b: 4, c: 3, e: 2, d: 1}
+//===============================================Objects==========================================
+// Multiply all object values by x
+// Write a function that takes an object (a) and a number (b) as arguments. Multiply all values of 'a' by 'b'. Return the resulting object.
+interface obj {
+  [key: string]: number;
+}
+const multiplyObjValuesWithNum = (obj: obj, num: number) => {
+  return Object.entries(obj).reduce((acc, [key, val]) => {
+    return { ...acc, [key]: val * num };
+  }, {});
+};
+console.log(multiplyObjValuesWithNum({ a: 1, b: 2, c: 3 }, 3));
+console.log(multiplyObjValuesWithNum({ j: 9, i: 2, x: 3, z: 4 }, 10));
+console.log(multiplyObjValuesWithNum({ w: 15, x: 22, y: 13 }, 6));

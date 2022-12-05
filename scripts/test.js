@@ -85,17 +85,37 @@ console.log('asfasfa');
 // Write a function that takes an object as argument. It should return an object with all original object properties. except for the property with key 'b
 const removePropFromObj = (obj) => {
     const { b, ...rest } = obj;
-    return rest;
+    return [rest, obj];
 };
 console.log(removePropFromObj({ a: 1, b: 7, c: 3 }));
-// console.log(removePropFromObj({ b: 0, a: 7, d: 8 }));
-// console.log(removePropFromObj({ e: 6, f: 4, b: 5, a: 3 }));
+const returnNesteProp = (obj) => {
+    return obj?.a?.b;
+};
+console.log(returnNesteProp({ a: 1 }));
+console.log(returnNesteProp({ a: { b: { c: 3 } } }));
+console.log(returnNesteProp({ b: { a: 1 } }));
+console.log(returnNesteProp({ a: { b: 2 } }));
+const sumObjValues = (obj) => {
+    return Object.values(obj).reduce((a, b) => a + b, 0);
+};
+console.log(sumObjValues({ a: 1, b: 2, c: 3 }));
+console.log(sumObjValues({ j: 9, i: 2, x: 3, z: 4 }));
+console.log(sumObjValues({ w: 15, x: 22, y: 13 }));
 //===============================================Objects==========================================
-const myFunction = (a, b) => {
-    return a.reduce((acc, cur, i) => {
-        return { ...acc, [cur]: b[i] };
+// Merge two objects with matching keys
+// Write a function that takes two objects as arguments. Unfortunately, the property 'b' in the second object has the wrong key. It should be named 'd' instead. Merge both objects and correct the wrong property name. Return the resulting object. It should have the properties 'a', 'b', 'c', 'd', and 'e'
+const mergeObjWithMachStrings = (obj1, obj2) => {
+    const { b, ...rest } = obj2;
+    return { ...obj1, ...rest, d: b };
+};
+console.log(mergeObjWithMachStrings({ a: 1, b: 2 }, { c: 3, b: 4, e: 5 })); //{ a: 1, b: 2, c: 3, e: 5, d: 4}
+console.log(mergeObjWithMachStrings({ a: 5, b: 4 }, { c: 3, b: 1, e: 2 })); //{ a: 5, b: 4, c: 3, e: 2, d: 1}
+const multiplyObjValuesWithNum = (obj, num) => {
+    return Object.entries(obj).reduce((acc, [key, val]) => {
+        return { ...acc, [key]: val * num };
     }, {});
 };
-console.log(myFunction(['a', 'b', 'c'], [1, 2, 3])); //{a:1,b:2,c:3}
-console.log(myFunction(['w', 'x', 'y', 'z'], [10, 9, 5, 2])); // {w:10,x:9,y:5,z:2}
+console.log(multiplyObjValuesWithNum({ a: 1, b: 2, c: 3 }, 3));
+console.log(multiplyObjValuesWithNum({ j: 9, i: 2, x: 3, z: 4 }, 10));
+console.log(multiplyObjValuesWithNum({ w: 15, x: 22, y: 13 }, 6));
 //# sourceMappingURL=test.js.map
