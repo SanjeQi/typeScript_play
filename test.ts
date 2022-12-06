@@ -137,3 +137,14 @@ const multiplyObjValuesWithNum = (obj: obj, num: number) => {
 console.log(multiplyObjValuesWithNum({ a: 1, b: 2, c: 3 }, 3));
 console.log(multiplyObjValuesWithNum({ j: 9, i: 2, x: 3, z: 4 }, 10));
 console.log(multiplyObjValuesWithNum({ w: 15, x: 22, y: 13 }, 6));
+//===============================================Objects==========================================
+// Convert array to object with counter
+// Write a function that takes an array of numbers as argument. Convert the array to an object. It should have a key for each unique value of the array. The corresponding object value should be the number of times the key occurs within the array.
+const converArrToObjUniqe = (a: number[]) => {
+  return a.reduce((acc, num) => {
+    return { ...acc, [num]: (acc[num] || 0) + 1 };
+  }, {});
+};
+console.log(converArrToObjUniqe([1, 2, 2, 3])); //{1:1,2:2,3:1}
+console.log(converArrToObjUniqe([9, 9, 9, 99])); //{9:3,99:1}
+console.log(converArrToObjUniqe([4, 3, 2, 1])); //{1:1,2:1,3:1,4:1}
