@@ -146,4 +146,41 @@ const replaceEmptyStrWithNull = (obj) => {
 console.log(replaceEmptyStrWithNull({ a: 'a', b: 'b', c: '' })); //{ a: 'a', b: 'b', c: null }
 console.log(replaceEmptyStrWithNull({ a: '', b: 'b', c: ' ', d: 'd' }));
 console.log(replaceEmptyStrWithNull({ a: 'a', b: 'b ', c: ' ', d: '' }));
+const extractInfoFromObj = (obj) => {
+    return {
+        fn: obj.fn,
+        ln: obj.ln,
+        ...(obj.size && { size: `${obj.size}cm` }),
+        ...(obj.weight && { weight: `${obj.weight}cm` }),
+    };
+};
+console.log(extractInfoFromObj({
+    fn: 'Lisa',
+    ln: 'Müller',
+    age: 17,
+    size: 175,
+    weight: 67,
+}));
+//{fn: 'Lisa', ln: 'Müller', size: '175cm', weight: '67kg'}
+console.log(extractInfoFromObj({
+    fn: 'Martin',
+    ln: 'Harper',
+    age: 26,
+    email: 'martin.harper@test.de',
+    weight: 102,
+}));
+//{fn: 'Martin', ln: 'Harper', weight: '102kg'}
+console.log(extractInfoFromObj({
+    fn: 'Andrew',
+    ln: 'Harper',
+    age: 81,
+    size: 175,
+    weight: 71,
+}));
+console.log(extractInfoFromObj({
+    fn: 'Matthew',
+    ln: 'Müller',
+    age: 19,
+    email: 'matthew@mueller.de',
+}));
 //# sourceMappingURL=test.js.map
