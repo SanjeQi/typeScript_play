@@ -148,3 +148,17 @@ const converArrToObjUniqe = (a: number[]) => {
 console.log(converArrToObjUniqe([1, 2, 2, 3])); //{1:1,2:2,3:1}
 console.log(converArrToObjUniqe([9, 9, 9, 99])); //{9:3,99:1}
 console.log(converArrToObjUniqe([4, 3, 2, 1])); //{1:1,2:1,3:1,4:1}
+//===============================================Objects==========================================
+// Swap object keys with values
+// Write a function that takes an object as argument. Somehow, the properties and keys of the object got mixed up. Swap the Javascript object's key with its values and return the resulting object
+interface ObjString {
+  [key: number | string]: string | number;
+}
+const swapObjKeysWithValues = (obj: ObjString) => {
+  return Object.entries(obj).reduce((acc, [key, val]) => {
+    return { ...acc, [val]: key };
+  }, {});
+};
+console.log(swapObjKeysWithValues({ z: 'a', y: 'b', x: 'c', w: 'd' })); //{a:'z',b:'y',c:'x',d:'w'}
+console.log(swapObjKeysWithValues({ 2: 'a', 4: 'b', 6: 'c', 8: 'd' })); //{a:'2',b:'4',c:'6',d:'8'}
+console.log(swapObjKeysWithValues({ a: 1, z: 24 })); //{1:'a',24:'z'}

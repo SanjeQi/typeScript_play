@@ -129,4 +129,12 @@ const converArrToObjUniqe = (a) => {
 console.log(converArrToObjUniqe([1, 2, 2, 3])); //{1:1,2:2,3:1}
 console.log(converArrToObjUniqe([9, 9, 9, 99])); //{9:3,99:1}
 console.log(converArrToObjUniqe([4, 3, 2, 1])); //{1:1,2:1,3:1,4:1}
+const swapObjKeysWithValues = (obj) => {
+    return Object.entries(obj).reduce((acc, [key, val]) => {
+        return { ...acc, [val]: key };
+    }, {});
+};
+console.log(swapObjKeysWithValues({ z: 'a', y: 'b', x: 'c', w: 'd' })); //{a:'z',b:'y',c:'x',d:'w'}
+console.log(swapObjKeysWithValues({ 2: 'a', 4: 'b', 6: 'c', 8: 'd' })); //{a:'2',b:'4',c:'6',d:'8'}
+console.log(swapObjKeysWithValues({ a: 1, z: 24 })); //{1:'a',24:'z'}
 //# sourceMappingURL=test.js.map
