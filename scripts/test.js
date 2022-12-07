@@ -137,4 +137,13 @@ const swapObjKeysWithValues = (obj) => {
 console.log(swapObjKeysWithValues({ z: 'a', y: 'b', x: 'c', w: 'd' })); //{a:'z',b:'y',c:'x',d:'w'}
 console.log(swapObjKeysWithValues({ 2: 'a', 4: 'b', 6: 'c', 8: 'd' })); //{a:'2',b:'4',c:'6',d:'8'}
 console.log(swapObjKeysWithValues({ a: 1, z: 24 })); //{1:'a',24:'z'}
+const replaceEmptyStrWithNull = (obj) => {
+    return Object.entries(obj).reduce((acc, [key, val]) => {
+        val.trim() === '' ? (val = null) : val;
+        return { ...acc, [key]: val };
+    }, {});
+};
+console.log(replaceEmptyStrWithNull({ a: 'a', b: 'b', c: '' })); //{ a: 'a', b: 'b', c: null }
+console.log(replaceEmptyStrWithNull({ a: '', b: 'b', c: ' ', d: 'd' }));
+console.log(replaceEmptyStrWithNull({ a: 'a', b: 'b ', c: ' ', d: '' }));
 //# sourceMappingURL=test.js.map
