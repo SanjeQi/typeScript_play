@@ -151,7 +151,7 @@ const extractInfoFromObj = (obj) => {
         fn: obj.fn,
         ln: obj.ln,
         ...(obj.size && { size: `${obj.size}cm` }),
-        ...(obj.weight && { weight: `${obj.weight}cm` }),
+        ...(obj.weight && { weight: `${obj.weight}kg` }),
     };
 };
 console.log(extractInfoFromObj({
@@ -183,4 +183,15 @@ console.log(extractInfoFromObj({
     age: 19,
     email: 'matthew@mueller.de',
 }));
+const addPropToObjInArr = (arr, str) => {
+    return arr.map((obj) => ({ ...obj, continent: str }));
+};
+console.log(addPropToObjInArr([
+    { city: 'Tokyo', country: 'Japan' },
+    { city: 'Bangkok', country: 'Thailand' },
+], 'Asia'));
+console.log(addPropToObjInArr([
+    { city: 'Stockholm', country: 'Sweden' },
+    { city: 'Paris', country: 'France' },
+], 'Europe'));
 //# sourceMappingURL=test.js.map

@@ -193,7 +193,7 @@ const extractInfoFromObj = (obj: InfoObj) => {
     fn: obj.fn,
     ln: obj.ln,
     ...(obj.size && { size: `${obj.size}cm` }),
-    ...(obj.weight && { weight: `${obj.weight}cm` }),
+    ...(obj.weight && { weight: `${obj.weight}kg` }),
   };
 };
 
@@ -233,4 +233,36 @@ console.log(
     age: 19,
     email: 'matthew@mueller.de',
   })
+);
+//===============================================Objects==========================================
+// Add a property to each object in array
+// Write a function that takes an array of objects and a string as arguments. Add a property with key 'continent' and value equal to the string to each of the objects. Return the new array of objects. Tipp: try not to mutate the original array
+
+interface Obj3 {
+  city: string;
+  country: string;
+  continent?: string;
+}
+
+const addPropToObjInArr = (arr: Obj3[], str: string) => {
+  return arr.map((obj) => ({ ...obj, continent: str }));
+};
+
+console.log(
+  addPropToObjInArr(
+    [
+      { city: 'Tokyo', country: 'Japan' },
+      { city: 'Bangkok', country: 'Thailand' },
+    ],
+    'Asia'
+  )
+);
+console.log(
+  addPropToObjInArr(
+    [
+      { city: 'Stockholm', country: 'Sweden' },
+      { city: 'Paris', country: 'France' },
+    ],
+    'Europe'
+  )
 );
