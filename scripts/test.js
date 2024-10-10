@@ -299,7 +299,7 @@
 //   const name = await data.json();
 //   return name;
 // }
-//function expression
+// function expression
 // let logMessage = function () {
 //   return 'text from function expression';
 // };
@@ -347,13 +347,13 @@
 //       })
 //   );
 // });
-new Promise(function (resolve, reject) {
-    console.log('Starting task...');
-    setTimeout(function () {
-        resolve(10);
-    }, 1000);
-}).then(function (data) {
-    console.log('Promise fulfilled');
-    console.log(data);
-});
+// new Promise(function (resolve, reject) {
+//   console.log('Starting task...');
+//   setTimeout(function () {
+//     resolve(10);
+//   }, 1000);
+// }).then(function (data) {
+//   console.log('Promise fulfilled');
+//   console.log(data);
+// });
 //# sourceMappingURL=test.js.map
