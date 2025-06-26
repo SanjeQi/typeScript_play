@@ -348,7 +348,7 @@
 //   );
 // });
 // new Promise(function (resolve, reject) {
-//   console.log('Starting task...');
+//   console.log('Starting task..`
 //   setTimeout(function () {
 //     resolve(10);
 //   }, 1000);
